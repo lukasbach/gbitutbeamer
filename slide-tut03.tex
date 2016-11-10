@@ -1,0 +1,281 @@
+\input{assets/slide-pre}
+
+
+\section{Aussagenlogik}
+
+\begin{frame}{Aussagenlogik}
+	\begin{itemize}
+		\pitem Das wars erst mal zu formalen Sprachen.
+		\pitem Heute ist Freitag.
+		\pitem Die Menge aller Männer dieser Welt ist disjunkt zur Menge aller Frauen dieser Welt.
+	\end{itemize}
+
+	\pause
+	
+	Das sind alles Aussagen. \pause Aussagen sind entweder \emph{wahr} \pause oder \emph{falsch}.
+\end{frame}
+
+\begin{frame}{Aussagenlogik}
+	\pause 
+	
+	Wir kapseln Aussagen und verwendet Variablen dafür. \pause 
+	
+	Zum Beispiel:
+	
+	\begin{itemize}
+		\pitem $A := $ ``Die Straße ist nass.''
+		\pitem $B := $ ``Es regnet.''
+	\end{itemize}
+
+	\pause Aussagen lassen sich verknüpfen:
+	
+	\begin{itemize}
+		\pitem \markGreen{Logisches Und:} \pause $A \land B \pause = A$ und $B \pause = $ Die Straße ist nass und es regnet.
+		\pitem \markGreen{Logisches Oder:} \pause $A \lor B \pause = A$ oder $B \pause = $ Die Straße ist nass oder es regnet\pause . Es kann auch beides wahr sein.
+		\pitem \markGreen{Negierung:} \pause $\lnot A \pause = $ nicht $A \pause = $ Die Straße ist nicht nass.
+		\pitem \markGreen{Implikation:} \pause $A \rightarrow B \pause = $ Aus $A$ folgt $B \pause = $ Wenn die Straße nass ist, dann regnet es.
+		\pitem \markGreen{Äquivalenz:} \pause $A \leftrightarrow B \pause = A$ und $B$ sind äquivalent $\pause = $ Die Straße ist \emph{genau dann} nass, \emph{wenn} es regnet.
+		\begin{itemize}
+			\pitem $A \leftrightarrow B = (A \rightarrow B) \land (B \rightarrow A)$\pause , also die Straße ist nass wenn es regnet \emph{und} es regnet wenn die Straße nass ist.
+		\end{itemize}
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Übung zu Aussagenlogik}
+	
+	\begin{itemize}
+		\item $A := $ ``Die Straße ist nass.''
+		\item $B := $ ``Es regnet.''
+		\item $C := $ ``$\pi$ ist gleich $3$.''
+	\end{itemize}
+
+	\begin{itemize}
+		\pitem Was ist $B \rightarrow C$? \pause ``Wenn es regnet, ist $\pi$ gleich $3$.''
+	\end{itemize}
+
+	\pause
+	
+	% Aus Skriptum, Kapitel 5.3 Boolesche Funktionen
+	\begin{center}
+		\begin{tabular}{c|c||c|c|c|c}%*{2}{>{$}c<{$}}|*{4}{>{$}c<{$}}
+			\hline
+			$x_1$ & $x_2$ & $\lnot x_1$ & $x_1 \land x_2$ & $x_1 \lor x_2$ & $x_1 \rightarrow x_2$ \\
+			\hline
+			\F & \F & \W & \F & \F & \W \\
+			\F & \W & \W & \F & \W & \W \\
+			\W & \F & \F & \F & \W & \F \\
+			\W & \W & \F & \W & \W & \W \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+\end{frame}
+
+\begin{frame}{Syntax der Aussagenlogik}
+	\pause
+	Menge der Aussagevariablen:
+	
+	\pause\quad $Var_{AL} \pause \subseteq \{P_i : i \in \N_0\}$ \pause oder $\{P, Q, R, S, \dots\}$
+	
+	\pause Alphabet der Aussagenlogik:
+	
+	\pause\quad $A_{AL} = \{(, ), \lnot, \land, \lor, \rightarrow, \leftrightarrow\} \cup Var_{AL}$
+\end{frame}
+
+\begin{frame}{Boolesche Funktionen}
+\begin{block}{Boolesche Funktionen}
+	Eine boolsche Funktion ist eine Abbildung \pause der Form $f: \B^n \rightarrow \B$ \pause mit $\B = \{w, f\}$.
+\end{block}
+
+Typische Boolsche Funktionen\pause : $b_\lnot (x) \pause = \lnot x$\pause , $b_\lor (x_1, x_2) \pause = x_1 \lor x_2$ \dots
+\end{frame}
+
+\begin{frame}{Interpretationen}
+	\begin{block}{Interpretation}
+		\pause Eine Interpretation ist eine Abbildung $I : V \rightarrow \B$\pause , die einer Variablenmenge eine ``Interpretation''\pause , also wahr oder falsch zuordnet.
+	\end{block}
+
+\pause Weiter legt man $val_I(F)$ als Auswertung einer aussagenlogischer Formel $F$ fest.
+\pause
+	\newcommand{\val}{val}
+	\begin{align*}
+	\val_I(X)         &= I(X) \\
+	\val_I(\lnot G)   &= b_{\lnot}(\val_I(G)) \\
+	\val_I(G \land H) &= b_{\land}(\val_I(G), \val_I(H)) \\
+	\val_I(G \lor H)  &= b_{\lor}(\val_I(G)  \val_I(H)) \\
+	\val_I(G \rightarrow H)&= b_{\rightarrow}(\val_I(G), \val_I(H))
+	\end{align*}
+\end{frame}
+
+\begin{frame}{Übung zu Interpretationen}
+	
+	
+	\begin{itemize}
+		\item Wie viele Interpretationen gibt es bei k = 1, 2, 3 Variablen?
+		\item Wie viele Interpretationen gibt es bei k+1 Variablen im Vergleich zu k Variablen?
+	\end{itemize}
+	
+\end{frame}	
+
+\begin{frame}{Übung zur Aussagenlogik}
+	\pause Sei $A := \W, B := \W, C := \F$.
+	
+	\begin{itemize}
+		\pitem Ist $(A \land B) \lor \lnot C$ wahr oder falsch? \pause $(A \land B) \lor \lnot C \pause = (\W \land \W) \lor \lnot \F \pause = \W \lor \lnot \F = \pause \W \lor \W \pause = \W$\pause , die Aussage ist also wahr.
+		\pitem Ist $\lnot (A \lor A)$ wahr oder falsch? \pause Falsch! \pause Wann ist $\lnot (A \lor A)$ im allgemeinen wahr? \pause Genau dann, wenn $\lnot A$ wahr ist.
+	\end{itemize}
+
+	\pause
+
+	\begin{block}{Aussagen Äquivalenz}
+		Erinnerung: \pause $A \leftrightarrow B$ heißt: \pause $A \rightarrow B \land B \rightarrow A$. 
+		
+		\pause Wenn zwei Aussagen äquivalent sind, sind ihre Wahrheitswerte immer gleich\pause , wenn die Wahrheitswerte, von denen sie abhängen, gleich sind. 
+		
+		\pause Mann sagt und schreibt dann: \pause $A$ ist \emph{genau dann} wahr, \emph{wenn} $B$ wahr ist.
+	\end{block}
+
+	\begin{itemize}
+		\pitem $\lnot (A \lor A)$ ist genau dann wahr\pause , wenn $\lnot A$ wahr ist\pause , also gilt:  $\lnot (A \lor A) \pause \leftrightarrow \lnot A$. 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Mehr zu Äquivalenz}
+\pause
+	\begin{block}{Alternative Definition zu Äquivalenz}
+		Zwei Formeln G und H heißen äquivalent, wenn für jede Interpretation gilt $val_I(G) = val_I(H)$.
+	\end{block}\pause
+
+	Vorher Äquivalenz von Formeln unter gegebener Interpretation\pause , diesmal Äquivalenz von Formeln unter beliebiger Interpretation.\pause
+
+	\textbf{Bemerkung}\\
+	\begin{itemize}
+		\pitem Man schreibt $G \equiv  H$
+		\pitem $\mathbb{B}^V \rightarrow \mathbb{B}: I \mapsto val_I(G)$
+	\end{itemize}\pause
+	\textbf{Beispiele}\\\pause
+	$(\lnot(\lnot P))$ ist äquivalent zu $P$\\\pause
+	$(\lnot(P\land Q))$ ist äquivalent zu $((\lnot P) \lor (\lnot Q))$
+\end{frame}
+
+\begin{frame}{Beispiele zu Äquivalenz}
+	\begin{itemize}
+		\pitem Ein Wort $w$ hat die Länge $n$ $\leftrightarrow |w| = n$.
+		\pitem Die Vereinigung zweier Mengen $A$ und $B$ hat die Kardinalität $|A| + |B|$ \pause $\leftrightarrow$ $A \cap B = \emptyset$ \pause $\leftrightarrow$ $A$ und $B$ sind disjunkt.
+		\pitem $p$ ist eine rationale Zahl \pause $\leftrightarrow$ $p$ lässt sich darstellen als $p = \frac{a}{b}, a\in \Z, b \in \N$ \pause $\leftrightarrow$ $p \in \Q$.
+	\end{itemize}	
+\end{frame}
+
+\begin{frame}{Wahrheitstabellen}
+	\begin{itemize}
+		\item $(((P \rightarrow Q) \lor Q) \rightarrow (P \land \lnot Q))$
+	\end{itemize}
+
+	\begin{center}
+		\begin{tabular}{c|c||c|c|c|c}%*{2}{>{$}c<{$}}|*{4}{>{$}c<{$}}
+			\hline
+				$P$ & $Q$ & $(P \land Q)$ & $\lor Q$ & $\rightarrow$ & $(P \land \lnot Q)$ \\\hline
+				
+				\visible<1->{\W} & \visible<1->{\W} & \visible<2->{\W} & \visible<6->{\W} & \visible<14->{\F} & \visible<10->{\F} \\\hline
+				
+				\visible<1->{\W} & \visible<1->{\F} & \visible<3->{\F} & \visible<7->{\F} & \visible<15->{\W} & \visible<11->{\W} \\\hline
+				
+				\visible<1->{\F} & \visible<1->{\W} & \visible<4->{\F} & \visible<8->{\W} & \visible<16->{\F} & \visible<12->{\F} \\\hline
+				
+				\visible<1->{\F} & \visible<1->{\F} & \visible<5->{\F} & \visible<9->{\F} & \visible<17->{\W} & \visible<13->{\F} \\\hline
+				
+		\end{tabular}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Übungen zu Aussagenlogik}
+	\begin{taskblock}{Übungen zu Aussagenlogik}
+		\begin{itemize}
+			\item Schreibe Wahrheitstabellen zu den Formeln um den Wahrheitsgehalt festzustellen.
+				\item $\lnot(P \land Q) \land \lnot (Q \land P)$
+				\item $(P \land Q \land R) \leftrightarrow (\lnot P \lor Q)$
+				\item $(A\land(B\lor C))\leftrightarrow ((A\land B)\lor(A\land C))$
+			\item Welche dieser Aussagen sind wahr?
+				\item $\lnot (P \land Q) = \lnot P \lor \lnot Q$
+				\item $P \land P = P \lor P$
+				\item $(P \lor Q) \land R = (P \land R) \lor (Q \land R)$
+		\end{itemize}
+	\end{taskblock}
+\end{frame}
+
+\begin{frame} {Wahrheitstabellen}
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|c|}
+			\hline
+			$A$&$B$& $\lnot A$& $A \land B$ & $A\lor B$ &$A\rightarrow B$ &$A \leftrightarrow B$\\
+			\hline
+			w&w&f&w&w&w&w\\
+			w&f&f&f&w&f&f\\
+			f&w&w&f&w&w&f\\
+			f&f&w&f&f&w&w\\
+			\hline
+		\end{tabular}
+	\end{center}
+
+	\begin{taskblock}{Aufgabe}
+		Finde einen logischen Ausdruck in A und B unter Verwendung von $\land, \lor$ und $\lnot$, der die Aussage ``Entweder A oder B'' repräsentiert	
+	\end{taskblock}
+\end{frame}
+
+\begin{frame}{Wahrheitstabellen}
+	
+	\begin{taskblock}{Aufgabe}
+		Finde einen logischen Ausdruck in A und B unter Verwendung von $\land, \lor$ und $\lnot$, der die Aussage ``Entweder A oder B'' repräsentiert	
+	\end{taskblock}
+
+	\textbf{Lösung}
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			$A$&$B$& $A \land \lnot B$& $\lnot A \land B$ & $(A \land \lnot B) \lor (\lnot A \land B) $\\
+			\hline
+			w&w&f&f&f\\
+			w&f&w&f&w\\
+			f&w&f&w&w\\
+			f&f&f&f&f\\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{frame}
+
+
+\begin{frame}{Weitere Begriffe}\pause
+	\begin{block}{Tautologie}\pause
+		Die Formel $G$ ist eine Tautologie (oder allgemeingültig)\pause , wenn $G$ für alle Interpretationen wahr ist.
+	\end{block}\pause
+	\begin{block}{Erfüllbarkeit}\pause
+		Eine Formel $G$ ist erfüllbar\pause , wenn sie für mindestens eine Interpretation wahr ist.
+	\end{block}
+	\pause
+	\begin{block}{Lemma}
+		Wenn $G\equiv H$ ist, dann ist $G \leftrightarrow H$ eine Tautologie.
+	\end{block}
+\end{frame}
+
+\begin{frame} {Übung zu Tautologien}
+Sind das Tautologien?
+\begin{itemize}
+	\item $(G \rightarrow (H \rightarrow K)) \rightarrow ((G \rightarrow H) \rightarrow (G \rightarrow K))$ \pause \hspace{0.3cm} Ja
+	\item $(\lnot P \rightarrow Q) \land R \lor P$ \pause \hspace{0.3cm} Nein
+	\item $G \rightarrow (H \rightarrow G)$ \pause \hspace{0.3cm} Ja
+	\item $(\lnot P \rightarrow \lnot Q) \rightarrow ((\lnot P \rightarrow Q) \rightarrow P)$ \pause \hspace{0.3cm} Ja
+\end{itemize}
+\end{frame}
+
+
+\begin{frame} {Übung zu Erfüllbarkeit}
+	Sind die folgenden Ausdrücke erfüllbar?
+	\begin{itemize}
+		\item $ \lnot (A \lor \lnot A) $ \pause \hspace{0.3cm} nein
+		\item $(P \land \lnot Q) \lor (\lnot P \land R)$ \pause \hspace{0.3cm} Ja
+		
+	\end{itemize}
+\end{frame}
+
+\input{assets/slide-post}

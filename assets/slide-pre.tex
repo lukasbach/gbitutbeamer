@@ -1,0 +1,49 @@
+\ifdefined\compileall \else
+\ifdefined\compiletype
+	\documentclass[handout]{beamer}
+\else
+	\documentclass{beamer}
+	\def\compiletype{livebeamer}
+\fi
+
+\usepackage{templates/beamerthemekitwide}
+\include{assets/dependencies}
+\include{assets/definitions}
+
+\title[Grundbegriffe der Informatik]{Grundbegriffe der Informatik\\Tutorium 33}
+\subtitle{}
+\author{Lukas Bach, lukas.bach@student.kit.edu}
+
+\institute{}
+
+\titlelogo{lukasbach}
+\titleimage{bg}
+
+
+\include{assets/multislider}
+
+\setbeamercovered{invisible}
+
+%\usepackage[citestyle=authoryear,bibstyle=numeric,hyperref,backend=biber]{biblatex}
+%\addbibresource{templates/example.bib}
+%\bibhang1em
+
+\begin{document}
+	
+\selectlanguage{ngerman}
+
+
+%title page
+\begin{frame}
+	\titlepage
+\end{frame}
+
+%table of contents
+\ifdefined\printmode
+	\ifdefined\compileall \else
+	\begin{frame}{Gliederung}
+		\tableofcontents
+	\end{frame}
+\fi\fi
+
+\fi

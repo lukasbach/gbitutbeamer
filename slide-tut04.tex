@@ -1,0 +1,185 @@
+\input{assets/slide-pre}
+
+%TODO POP Quiz
+
+\section{Vollständige Induktion}
+\begin{frame} {Was ist überhaupt vollständige Induktion?}
+	\begin{itemize}
+		\item Beweisverfahren
+		\item In der Regel zu zeigen: Eine Aussage gilt für alle $n \in \mathbb{N}_+$, manchmal auch für alle $n \in \mathbb{N}_0$
+		\item Man schließt "induktiv" von einem n auf n+1
+		\item Idee: Wenn die Behauptung für ein beliebiges \textbf{festes} n gilt, dann gilt sie auch für den Nachfolger n+1 (und somit auch für dessen Nachfolger und schließlich für alle n)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Struktur des Beweises}
+	Behauptung: (\textit {kurz} \textbf{Beh.:})\\
+	Beweis: (\textit{kurz} \textbf{Bew.:})
+	\begin{itemize}
+		\pause
+		\item Induktionsanfang: (\textit{kurz} \textbf{IA:})
+		\begin{itemize}
+			\item Zeigen, dass Behauptung für Anfangswert gilt (oft $n=1$)
+			\item Auch mehrere (z.B. zwei) Anfangswerte möglich
+		\end{itemize}
+		\pause
+		\item Induktionsvoraussetzung: (\textit{kurz} \textbf{IV:})
+		\begin{itemize}
+			\item Sei $n \in \mathbb{N}_+$ (bzw. $n \in \mathbb{N}_0$) fest aber beliebig und es gelte [Behauptung einsetzen]
+		\end{itemize}
+		\pause
+		\item Induktionsschritt: (\textit{kurz} \textbf{IS:})
+		\begin{itemize}
+			\item Behauptung für n+1 auf n zurückführen
+			\item Wenn induktive Definition gegeben: verwenden!
+			\item Sonst: Versuche Ausdruck, in dem (n+1) vorkommt umzuformen in einen Ausdruck, in dem nur n vorkommt
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+%Zwei Beispiele, Lösungen siehe gleicher Ordner
+% https://www.cl.cam.ac.uk/~mgk25/kuhn-fa.pdf
+%Einfacheres S.8
+\begin{frame}
+	\textbf{Aufgabe}\\
+	\begin{eqnarray*}
+		&x_0 := 0\\
+		&\text{Für alle } n \in \mathbb{N}_0: x_{n+1} := x_n + 2n +1
+	\end{eqnarray*}			
+	\textit{Zeige mithilfe vollständiger Induktion, dass für alle} $n \in \mathbb{N}_0$ \\
+	\begin{center}$x_n = n^2$\end{center}
+	gilt.
+\end{frame}
+
+\begin{frame}{Formale Sprache}
+	\begin{itemize}
+		\pitem Was war nochmal $A^*$? Menge aller Wörter \emph{beliebiger} Länge über Alphabet $A$.
+		\pitem Was war nochmal eine formale Sprache?
+	\end{itemize}
+	
+	\pause
+	
+	\begin{block}{Formale Sprache}
+		Eine Formale Sprache $L$ \pause über einem Alphabet $A$ ist eine Teilmenge $L \subseteq A$.
+	\end{block}
+
+	\pause Als Beispiel von vorigen Folien:
+	
+	\begin{itemize}
+		\pitem $A := \{b, n, a\}$.
+		\begin{itemize}
+			\pitem $L_1 := \{ban, baan, nba, aa\}$ ist eine mögliche formale Sprache über $A$.
+			\pitem $L_2 := \{banana, bananana, banananana, ...\}$ \pause $ = \{w : w = bana(na)^k, k \in \N\}$ auch.
+			\pitem $L_3 := \{ban, baan, baaan, ...\}$ auch. \pause Andere Schreibweise? \pause \\ $ L_3 = \{w : w = ba^kn, k \in \N \}$
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Produkt von Sprachen}
+	\begin{block}{Produkt von formalen Sprachen}
+		Von zwei formalen Sprachen $L_1, L_2$ \pause lässt sich das Produkt \pause $L_1 \cdot L_2$ \pause bilden mit \pause $L_1 \cdot L_2 = \{w_1w_2 : w_1 \in L_1 $ und $w_2 \in L_2 \}$.
+	\end{block}
+
+	Sei $A := \{a, b\}, B := \{A, B, C, D, E, F\}$.
+	
+	\begin{itemize}
+		\pitem Sprache $L_1 \subseteq A$, die zuerst drei $a$'s enthält und dann beliebig viele $b$'s? $L_1 = \{aaa\}\cdot\{b\}^*$.
+		\pitem Sprache $L_2 \subseteq A$, die das Teilwort $ab$ nicht enthält? \pause $L_2 = \{b\}^*\{a\}^*$.
+		\pitem Sprache $L_3 \subseteq A$, die alle Wörter über $A$ enthält außer $\epsilon$? \pause $L_3 = A \cdot A^* \pause = A^* \backslash \{\epsilon\}$.
+		\pitem Sprache $L_4$, die alle erlaubten Java Variablennamen enthält.
+		\begin{itemize}
+			\pitem $B := \{_,a,b,...,z,A,B,...,Z\}$
+			\pitem $C := B \cup \Z_9$
+			\pitem $L_4 \subseteq C \pause = (B \cdot C^*) \backslash \{if, class, while, ...\}$
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Produkt von Sprachen}
+	(Exkurs zur Linearen Algebra)\pause
+	
+	\begin{taskblock}{Übung zu Produkt von formalen Sprachen}
+		Sei $A$ ein beliebiges Alphabet und $M := \{L : L $ ist formale Sprache über $A \} \pause = 2^A$. \pause Produkt von Sprachen lässt sich auch als Abbildung bzw. Verknüpfung $\cdot : M \times M \rightarrow M$ darstellen.
+		
+		Zeige: 
+		\begin{itemize}
+			\pitem Die Verknüpfung $\cdot$ ist assoziativ.
+			\pitem Es gibt (mindestens) ein Element $e \in M$, sodass für alle $x \in M$ gilt: $x \cdot e = e \cdot x = x$.
+			\pitem Für jedes $x \in M$ gibt es (mindestens) ein Element $y \in M$, sodass gilt: $x \cdot y = y \cdot x = \hat{e} \in M$.
+		\end{itemize}
+	\end{taskblock}
+\end{frame}
+
+\begin{frame}{Produkt von Sprachen}
+	\pause 
+	
+	Seien $L_1, L_2, L_3 \in M$.
+	
+	\begin{itemize}
+		\item Die Verknüpfung $\cdot$ ist assoziativ:
+		\begin{itemize}
+			\pitem $(L_1 \cdot L_2) \cdot L_3 \pause = (\{w_1\cdot w_2 : w_1 \in L_1, w_2 \in L_2\}) \cdot L_3 \pause = \{w_1w_2w_3 : w_1 \in L_1, w_2 \in L_2, w_3 \in L_3\} \pause = L_1 \cdot (\{w_2w_3 : w_2 \in L_2, w_3 \in L_3\}) \pause = L_1 \cdot (L_2 \cdot L_3)$.
+		\end{itemize}
+	
+		\pitem Es gibt (mindestens) ein Element $e \in M$, sodass für alle $x \in M$ gilt: $x \cdot e = e \cdot x = x$.
+		\begin{itemize}
+			\pitem $e := \{\epsilon\}$.
+			\pitem $L_1 \cdot \{\epsilon\} \pause = L_1 \pause = \{\epsilon\} \cdot L_1$
+		\end{itemize}
+	
+		\pitem Für jedes $x \in M$ gibt es (mindestens) ein Element $y \in M$, sodass gilt: $x \cdot y = y \cdot x = \hat{e} \in M$.
+		\begin{itemize}
+			\pitem $y := \emptyset \pause =: \hat{e}$
+			\pitem $L_1 \cdot \emptyset = \emptyset = \hat{e} = \emptyset = \emptyset \cdot L_1$
+		\end{itemize}
+	\end{itemize}
+
+	Ist damit $(M, \cdot)$ eine Gruppe? \pause Leider nicht. \pause Mussten bei der letzten Aufgabe etwas tricksen, $(M, \cdot)$ wäre eine Gruppe wenn $e = \hat{e}$\pause , aber $e = \{\epsilon\} \neq \hat{e} = \emptyset$.
+\end{frame}
+
+\begin{frame}{Potenz von Sprachen}
+	
+	\begin{block}{Potenz von Sprachen}
+		Potenz von formellen Sprachen ist wie folgt definiert:
+		\begin{itemize}
+			\pitem $L^0 := \{\epsilon\}$
+			\pitem $L^{i+1} := L^i \cdot L$ für $i \in \N_+$.
+		\end{itemize}
+	\end{block}
+
+	\begin{itemize}
+		\pitem $L_1 := \{a\}$.
+		\begin{itemize}
+			\pitem $L_1^0 = \{\epsilon\}$. \pause $L_1^1 \pause = \{\epsilon\} \cdot L_1 \pause = L_1$.
+			\pitem $L_1^2 = (\{\epsilon\} \cdot L_1) \cdot L_1 \pause = \{aa\}$.
+		\end{itemize}
+		\pitem $L_2 := \{ab\}^3\{c\}^4$
+		\begin{itemize}
+			\pitem $L_2^0 = \{\epsilon\}, L_1^1 = ...$
+			\pitem $L_2^2 \pause = (\{ab\}^3\{c\}^4)^2 \pause = (\{ab\}^3\{cccc\})^2 \pause = \{abababcccc\}^2 \pause = \{abababccccabababcccc\}$.
+		\end{itemize}
+		\pitem $L_3 := (\{a\} \cup \{b\})^2 \pause = \{aa, ab, ba, bb\}$
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Konkatenationsabschluss bei formalen Sprachen}
+	\p
+	\begin{block}{Konkatenationsabschluss}
+		Zu einer formalen Sprache $L$ \pause ist der Konkatenationsabschluss $L^*$ definiert \pause als $L^* := \bigcup\limits_{i \in \N_0} L^i$.
+	\end{block}
+	\p
+	\begin{block}{$\epsilon$-freie Konkatenationsabschluss}
+		Zu einer formalen Sprache $L$ \pause ist der $\epsilon$-freie Konkatenationsabschluss $L^+$ definiert \pause als $L^+ := \bigcup\limits_{i \in \N_+} L^i$.
+	\end{block}
+
+	\begin{itemize}
+		\pitem Warum gilt $\epsilon \notin L^+$ von beliebiger formeller Sprache $L$?
+		\pitem $L := \{a, b, c\}. L^* \pause = \{\epsilon, a, aa, ab, ac, aaa, aab, \dots, b, ba, bb, \dots \}$
+	\end{itemize}
+\end{frame}
+
+%TODO Aufgabe zu konkatenationsabschluss, siehe tutor blätter
+%TODO Binär und zahlendarstellung
+		
+
+\input{assets/slide-post}
