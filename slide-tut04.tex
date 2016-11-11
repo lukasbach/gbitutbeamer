@@ -1,3 +1,4 @@
+\def\tutdate{17.11.2016}
 \input{assets/slide-pre}
 
 %TODO POP Quiz
@@ -7,7 +8,7 @@
 	\begin{itemize}
 		\item Beweisverfahren
 		\item In der Regel zu zeigen: Eine Aussage gilt für alle $n \in \mathbb{N}_+$, manchmal auch für alle $n \in \mathbb{N}_0$
-		\item Man schließt "induktiv" von einem n auf n+1
+		\item Man schließt ``induktiv'' von einem n auf n+1
 		\item Idee: Wenn die Behauptung für ein beliebiges \textbf{festes} n gilt, dann gilt sie auch für den Nachfolger n+1 (und somit auch für dessen Nachfolger und schließlich für alle n)
 	\end{itemize}
 \end{frame}
@@ -50,6 +51,8 @@
 	gilt.
 \end{frame}
 
+\section{Formale Sprache}
+
 \begin{frame}{Formale Sprache}
 	\begin{itemize}
 		\pitem Was war nochmal $A^*$? Menge aller Wörter \emph{beliebiger} Länge über Alphabet $A$.
@@ -87,24 +90,22 @@
 		\pitem Sprache $L_3 \subseteq A$, die alle Wörter über $A$ enthält außer $\epsilon$? \pause $L_3 = A \cdot A^* \pause = A^* \backslash \{\epsilon\}$.
 		\pitem Sprache $L_4$, die alle erlaubten Java Variablennamen enthält.
 		\begin{itemize}
-			\pitem $B := \{_,a,b,...,z,A,B,...,Z\}$
+			\pitem $B := \{\_,a,b,...,z,A,B,...,Z\}$
 			\pitem $C := B \cup \Z_9$
 			\pitem $L_4 \subseteq C \pause = (B \cdot C^*) \backslash \{if, class, while, ...\}$
 		\end{itemize}
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Produkt von Sprachen}
-	(Exkurs zur Linearen Algebra)\pause
-	
+\begin{frame}{Produkt von Sprachen}	
 	\begin{taskblock}{Übung zu Produkt von formalen Sprachen}
 		Sei $A$ ein beliebiges Alphabet und $M := \{L : L $ ist formale Sprache über $A \} \pause = 2^A$. \pause Produkt von Sprachen lässt sich auch als Abbildung bzw. Verknüpfung $\cdot : M \times M \rightarrow M$ darstellen.
 		
 		Zeige: 
 		\begin{itemize}
 			\pitem Die Verknüpfung $\cdot$ ist assoziativ.
-			\pitem Es gibt (mindestens) ein Element $e \in M$, sodass für alle $x \in M$ gilt: $x \cdot e = e \cdot x = x$.
-			\pitem Für jedes $x \in M$ gibt es (mindestens) ein Element $y \in M$, sodass gilt: $x \cdot y = y \cdot x = \hat{e} \in M$.
+			\pitem Es gibt (mindestens) ein Element $e \in M$, sodass für alle $x \in M$ gilt: $x \cdot e = e \cdot x = x$. (Neutrales Element)
+			\pitem Es gibt ein Element $o \in M$, sodass für alle $x \in M$ gilt: $x \cdot o = o = o \cdot x$. (Absorbierendes Element)
 		\end{itemize}
 	\end{taskblock}
 \end{frame}
@@ -120,20 +121,20 @@
 			\pitem $(L_1 \cdot L_2) \cdot L_3 \pause = (\{w_1\cdot w_2 : w_1 \in L_1, w_2 \in L_2\}) \cdot L_3 \pause = \{w_1w_2w_3 : w_1 \in L_1, w_2 \in L_2, w_3 \in L_3\} \pause = L_1 \cdot (\{w_2w_3 : w_2 \in L_2, w_3 \in L_3\}) \pause = L_1 \cdot (L_2 \cdot L_3)$.
 		\end{itemize}
 	
-		\pitem Es gibt (mindestens) ein Element $e \in M$, sodass für alle $x \in M$ gilt: $x \cdot e = e \cdot x = x$.
+		\pitem Es gibt (mindestens) ein Element $e \in M$, sodass für alle $x \in M$ gilt: $x \cdot e = e \cdot x = x$. (neutrales Element)
 		\begin{itemize}
 			\pitem $e := \{\epsilon\}$.
 			\pitem $L_1 \cdot \{\epsilon\} \pause = L_1 \pause = \{\epsilon\} \cdot L_1$
 		\end{itemize}
 	
-		\pitem Für jedes $x \in M$ gibt es (mindestens) ein Element $y \in M$, sodass gilt: $x \cdot y = y \cdot x = \hat{e} \in M$.
+		\pitem Es gibt ein Element $o \in M$, sodass für alle $x \in M$ gilt: $x \cdot o = o = o \cdot x$. (Absorbierendes Element)
 		\begin{itemize}
-			\pitem $y := \emptyset \pause =: \hat{e}$
-			\pitem $L_1 \cdot \emptyset = \emptyset = \hat{e} = \emptyset = \emptyset \cdot L_1$
+			\pitem $o := \emptyset$
+			\pitem $L_1 \cdot \emptyset = \emptyset = \emptyset \cdot L_1$
 		\end{itemize}
 	\end{itemize}
 
-	Ist damit $(M, \cdot)$ eine Gruppe? \pause Leider nicht. \pause Mussten bei der letzten Aufgabe etwas tricksen, $(M, \cdot)$ wäre eine Gruppe wenn $e = \hat{e}$\pause , aber $e = \{\epsilon\} \neq \hat{e} = \emptyset$.
+	$(M, \cdot)$ ist damit keine Gruppe\p , es existieren keine Invers-Element.
 \end{frame}
 
 \begin{frame}{Potenz von Sprachen}
@@ -174,12 +175,241 @@
 
 	\begin{itemize}
 		\pitem Warum gilt $\epsilon \notin L^+$ von beliebiger formeller Sprache $L$?
-		\pitem $L := \{a, b, c\}. L^* \pause = \{\epsilon, a, aa, ab, ac, aaa, aab, \dots, b, ba, bb, \dots \}$
+		\pitem $L := \{a, b, c\}.  L^* \pause = \{\epsilon, a, aa, ab, ac, aaa, aab, \dots, b, ba, bb, \dots \}$
+		\pitem $L := \{aa, bc\}.  L^* \pause = \{\epsilon, aa, bc, aa\cdot aa, aa\cdot bc, bc \cdot aa, bc \cdot bc, aa \cdot aa \cdot aa, \dots \}$
 	\end{itemize}
 \end{frame}
 
-%TODO Aufgabe zu konkatenationsabschluss, siehe tutor blätter
-%TODO Binär und zahlendarstellung
+\begin{frame}{Übung zu Konkatenationsabschluss}
+	\pause Sei $L := \{a\}^*\{b\}^*$.
+	\begin{itemize}
+		\pitem Was ist alles in $L$ drin?
+		\begin{itemize}
+			\pitem $aaabbabbaaabba$? \pause Nein.
+			\pitem $aaabb$ und $abbaaabba$? \pause Ja, nein.
+			\pitem $aaabb$, $abb$, $aaabba$? \pause Ja, ja, nein.
+			\pitem $aaabb$, $abb$, $aaabb$, $a$? \pause Alles drin.
+		\end{itemize}
+		\pitem Was ist alles in $L^*$ drin?
+		\begin{itemize}
+			\pitem $aaabbabbaaabba$? \pause Ja.
+			\pitem $aaabb$ und $abbaaabba$? \pause Ja.
+			\pitem $aaabb$, $abb$, $aaabba$? \pause Ja.
+			\pitem $aaabb$, $abb$, $aaabb$, $a$? \pause Ja.
+			\pitem Alle Wörter aus $L^*$! \pause $\rightarrow L^* = \{a,b\}^*$.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Übung zu Konkatenationsabschluss}
+	\begin{exampleblock}{Erinnerung}
+		\begin{center}
+			$L^* := \bigcup\limits_{i \in \N_0} L^i$\qquad
+			$L^+ := \bigcup\limits_{i \in \N_+} L^i$
+		\end{center}
+	\end{exampleblock}
+
+	\begin{taskblock}{Beweisaufgabe}
+		Beweise: $L^* \cdot L = L^+$.
+	\end{taskblock}
+
+	\pause
+	\begin{columns}
+		\begin{column}{0.4\textwidth}
+			$\subseteq$:
+			
+			\p\markBlue{Vorraussetzung:} \p $w \in L^* \cdot L$ mit $w = w'w'', w' \in L^*$ und $w'' \in L$.
+			
+			\vspace{.3cm}
+			
+			\p Dann existiert ein $i \in \N_0$ mit $w' \in L^i$\p , also $w = w'w'' \in L^i \cdot L \p = L^{i+1}$.
+			
+			\vspace{.3cm}
+			
+			\p Weil $i+1\in \N_+$\p , gilt: $L^{i+1} \subseteq L^+$\p , also $w \in L^+$.
+		\end{column}
 		
+		\begin{column}{0.6\textwidth}
+			$\supseteq$:
+			
+			\p\markBlue{Vorraussetzung:} \p $w \in L^*\cdot L$.
+			
+			\vspace{.3cm}
+			
+			\p Dann existiert ein $i \in \N_+$ mit $w \in L^i$. \p Da $i \in \N_+$\p , existiert ein $j \in \N_0$ mit $i = j+1$\p , also für ein solches $j \in \N_0$\p : $w \in L^{j+1} \p = L^j \cdot L$.
+			
+			\vspace{.3cm}
+			
+			\p Also $w = w'w''$ mit $w' \in L^j$ und $w'' \in L$.
+			
+			\vspace{.3cm}
+			
+			\p Wegen $L^j \subseteq L^*$ \p ist $w = w'w'' \p \in L^* \cdot L$.
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Übung zu formalen Sprachen}
+	$L_1, L_2$ seien formale Sprachen.
+	\begin{itemize}
+		\pitem Wie sieht $L_1 \cdot L_2$ aus?
+		\pitem Wie sieht $L_1^3$ aus?
+		\pitem Wie sieht $L_1^2 \cdot L_2 \cdot L_2^0 \cdot L_1^*$ aus?
+		\pitem Wie sieht $(L_1^*)^0 \cdot L_2^+$ aus?
+	\end{itemize}	
+\end{frame}
+
+
+
+\section{Übersetzung und Kodierung}
+
+\begin{frame}{Herführung zu Zahlendarstellungen}
+	\pause Wir betrachten die Alphabete $A_{dez} := \Z_{10}, A_{bin} := \{0, 1\}, A_{oct} := \Z_8$.
+	\begin{itemize}
+		\pitem Was können wir daraus machen?
+		\pitem $A_{dez}^* \supset \{42, 1337, 999\}$.
+		\pitem $A_{bin}^* \supset \{101010, 10100111001, 1111100111\}$.
+		\pitem $A_{oct}^* \supset \{52, 2471, 1747\}$.
+		\pitem Wir suchen eine Möglichkeit, diese \markGreen{Zahlen} zu \markGreen{deuten}.
+		\pitem Aber irgendwie so, dass $42_{\in A_{dez}} \stackrel{Deutung}{=} 101010_{\in A_{bin}} \stackrel{Deutung}{=} 52_{\in A_{oct}}$.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Definition von Zahlendarstellungen}
+	\pause
+	
+	\begin{block}{$Num_k$}
+		Einer Zeichenkette $Z_k$ aus Ziffern \p wird mit $Num_k$ eine eindeutige Zahl zugeordnet:
+		
+		\vspace{.2cm}
+		
+		\vspace{.2cm}
+		
+		 \p $Num_k(\epsilon) = 0$
+		
+		\vspace{.2cm}
+		
+		 \p $Num_k(wx) = k \cdot Num_k(w) + num_k(x)$ mit $w \in Z_k^*$ und $x \in Z_k$.
+	\end{block}
+
+	\pause
+	
+	\begin{block}{$num_k$}
+		Einer einzelnen Ziffer $x \in Z_k$ aus einem Alphabet von Ziffern $Z_k$ wird mit $num_k(x)$ der Wert der Zahl zugewiesen.
+	\end{block}
+
+	\pause
+	
+	\begin{itemize}
+		\item Wichtig: $Num_k(w) \neq num_k(w)$!
+		\pitem Was ist: $num_{10}(3) \p = 3\p , num_{10}(7) \p = 7\p , num_{10}(11) = \p $ nicht definiert.
+		\pitem Für Zahlen $\geq k$: Benutze $Num_k$!
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Beispiel zu Zahlendarstellungen}
+	$Num_k(\epsilon) = 0$.
+	
+	$Num_k(wx) = k \cdot Num_k(w) + num_k(x)$ mit $w \in Z_k^*$ und $x \in Z_k$.
+	
+	\vspace{.3cm}
+	
+	\p Was ist $Num_{10}(123)$?
+	\begin{itemize}
+		\pitem $Num_{10}(123) \p = 10 \cdot Num_{10} (12) + num_{10}(3) \p = 10 \cdot ( Num_{10} (1) + num_{10}(2)) + num_{10}(3) \p = 10 \cdot ( num_{10}(1) + 10 \cdot num_{10}(2) ) + num_{10}(3) \p = 10 \cdot ( 1 + 10 \cdot 2 ) + 3 \p = 123$.
+	\end{itemize}
+	\p Yay?
+	
+	\p Was ist der dezimale Zahlenwert der Binärzahl 1010? \p Diesmal Basis $k = 2$.
+	\begin{itemize}
+		\pitem $Num_{2}(1010) \p = 2 \cdot Num_2(101) + num_2(0) \p = 2 \cdot (2 \cdot Num_2(10) + num_2(1) + num_2(0) \p = 2 \cdot (2 \cdot (2 \cdot Num_2(1) + num_2(0) ) + num_2(1) ) + num_2(0) \p = 2 \cdot (2 \cdot (2 \cdot num_2(1) + num_2(0) ) + num_2(1) ) + num_2(0) \p = 2 \cdot ( 2 \cdot (2 \cdot 1 + 0) + 1) + 0) = 10$.
+	\end{itemize}
+	\p Yay!
+\end{frame}
+
+\begin{frame}{Aufgaben zu Zahlendarstellungen}
+	$Num_k(\epsilon) = 0$.
+	
+	$Num_k(wx) = k \cdot Num_k(w) + num_k(x)$ mit $w \in Z_k^*$ und $x \in Z_k$.
+	
+	\begin{taskblock}{Übungen zu Zahlendarstellungen}
+		Berechne den numerischen Wert der folgenden Zahlen anderer Zahlensysteme nach dem vorgestellten Schema:
+		\begin{itemize}
+			\item $Num_8(345)$.
+			\item $Num_2(11001)$.
+			\item $Num_2(1000)$.
+			\item $Num_4(123)$.
+			\item $Num_{16}(4DF)$. (Zusatz)
+		\end{itemize}
+	\end{taskblock}
+
+	Anmerkung: Hexadezimalzahlen sind zur Basis $16$ und verwenden als Ziffern (in aufsteigender Reihenfolge: $1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F$.
+\end{frame}
+
+\begin{frame}{Aufgaben zu Zahlendarstellungen}
+	\pause Lösungen:
+	\begin{itemize}
+		\pitem $Num_8(345) \p = 229$.
+		\pitem $Num_2(11001) \p = 25$.
+		\pitem $Num_2(1000) \p = 8$.
+		\pitem $Num_4(123) \p = 27$.
+		\pitem $Num_{16}(4DF) \p = 1247$. 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Einfachere Umrechnung von Zahlendarstellungen}
+	Es gilt: $2(2(2(2(2 \cdot 1 + 0)+1)+0)+1)+0 \p = 2^4 \cdot 1 + 2^4 \cdot 0 + 2^3 \cdot 1 + 2^2 \cdot 0 + 2^1 \cdot 1 + 2^0 \cdot 0$.
+	
+	\p Daher, einfachere Rechenweise: $Num_k(w) = k^0 \cdot w(0) + k^1 \cdot w(1) + k^2 \cdot w(2) + ...$.
+	
+	\p Was sind folgende Zahlen in Dezimal im Kopf gerechnet?
+	
+	\begin{itemize}
+		\pitem $Num_2(10101) \p = 21$.
+		\pitem $Num_2(11101) \p = 29$.
+		\pitem $Num_2(1111111111) \p = 1023$.
+	\end{itemize}
+	
+\end{frame}
+		
+\begin{frame}{Einfachere Umrechnung von Zahlendarstellungen}
+	$Num_k(w) = k^0 \cdot w(0) + k^1 \cdot w(1) + k^2 \cdot w(2) + ...$.
+	
+	\p Was sind folgende Zahlen in Dezimal im Kopf gerechnet?
+	
+	\begin{itemize}
+		\pitem $Num_{16}(A1) \p = 161$.
+		\pitem $Num_{16}(BC) \p = 188$.
+		\pitem $Num_{16}(14) \p = 20$.
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Rechnen mit $div$ und $mod$}
+	\pause
+	\begin{block}{$div$ Funktion}
+		Die Funktion $div$ \markGreen{dividiert ganzzahlig.} \p (Schneidet also den Rest ab).
+	\end{block}
+	\pause
+	\begin{block}{$mod$ Funktion}
+		Die Modulo Funktion $mod$ gibt den \markGreen{Rest einer ganzzahligen Division} zurück.
+	\end{block}
+	\pause
+	\begin{itemize}
+		\item $22$ div $8 \p = 2 \p $ $(\frac{22}{8} = 2,75)$.
+		\pitem $22$ mod $8 \p = 6$.
+	\end{itemize}
+
+	\pause Fülle die Tabelle aus:
+	
+	\begin{tabular}{r | c c c c c c c c c c c c c}
+		x & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12\\\hline
+		x $div$ 4 & \p 0 & \p 0 & \p 0 & \p 0 & \p 1 & \p 1 & \p 1 & \p 1 & \p 2 & \p 2 & \p 2 & \p 2& \p 3\\
+		x $mod$ 4 & \p 0 & \p 1 & \p 2 & \p 3 & \p 0 & \p 1 & \p 2 & \p 3 & \p 0 & \p 1 & \p 2 & \p 3& \p 0\\
+	\end{tabular}
+\end{frame}
+
+% k ary representation Repr_k repr_k
+% huffman codierung?
 
 \input{assets/slide-post}
