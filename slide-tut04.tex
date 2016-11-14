@@ -409,7 +409,97 @@
 	\end{tabular}
 \end{frame}
 
-% k ary representation Repr_k repr_k
+\newcommand{\definitionOfRepr}{
+	\begin{align*}
+	\fRepr_k(n) =
+	\begin{cases}
+	\frepr_k(n) & \text{ falls } n < k \\
+	\fRepr_k(n \text{ div } k) \cdot \frepr_k(n \text{ mod } k) & \text{ falls } n \geq k
+	\end{cases}
+	\end{align*}
+}
+
+\begin{frame}{Von Zeichen zu Zahlen zurück zu Zahlen}
+	$11101_2$ ist also $29_{10}$. \p Was ist $29_{10}$ in binär? \pause
+	\begin{block}{$k$-äre Darstellung}
+		Die Repräsentation einer Zahl $n$ \p zur Basis $k$ \p lässt sich wie folgt ermitteln:\p
+		\definitionOfRepr
+		\p Achtung! \p Das $\cdot$ Symbol steht für Konkatenation, nicht für Multiplikation!
+	\end{block}
+\end{frame}
+
+\begin{frame}{Beispiel zu $Repr_k$}
+	\definitionOfRepr
+	
+	\pause Zum Beispiel: \p 
+	\begin{align*}
+	\fRepr_2(29) \p &= \fRepr_2(29 \fdiv 2) \cdot \frepr_2(29 \fmod 2)  \\
+	\p &= \fRepr_2(14) \cdot \frepr_2(1)\\
+	\p &= \fRepr_2(14 \fdiv 2) \cdot \frepr_2(14 \fmod 2) \cdot 1\\
+	\p &= \fRepr_2(7) \cdot \frepr_2(0) \cdot 1\\
+	\p &= \fRepr_2(7 \fdiv 2) \cdot \frepr_2(7 \fmod 2) \cdot 01\\
+	\p &= \fRepr_2(3) \cdot \frepr(1) \cdot 01\\
+	\p &= \fRepr_2(3 \fdiv 2) \cdot \frepr(3 \fmod 2) \cdot 101\\
+	\p &= \fRepr_2(1) \cdot \frepr(1) \cdot 101\\
+	\p &= 11101
+	\end{align*}
+\end{frame}
+\newcommand{\uhd}{_{16}}
+
+\begin{frame}{Beispiel zu $Repr_k$}
+\definitionOfRepr
+
+\pause Beispiel mit Hexadezimalzahlen: \p 
+\begin{align*}
+\fRepr\uhd (29) \p &= \fRepr\uhd (29 \fdiv 16) \cdot \frepr\uhd (29 \fmod 16)  \\
+\p &= \fRepr\uhd (1) \cdot \frepr\uhd (13)\\
+\p &= 1 \cdot D \p = 1D
+\end{align*}
+\end{frame}
+
+\begin{frame}{Übung zu $Repr_k$}
+	\definitionOfRepr
+	\begin{taskblock}{Übung zu $Repr_k$}
+		Berechne die Repräsentationen folgender Zahlen in gegebenen Zahlensystemen:
+		\begin{itemize}
+			\item $\fRepr_2(13)$.
+			\item $\fRepr_4(15)$.
+			\item $\fRepr\uhd (268)$.
+		\end{itemize}
+	\end{taskblock}
+
+	\pause Lösungen:
+	\begin{itemize}
+		\pitem $\fRepr_2(13) \p = 1101$.
+		\pitem $\fRepr_4(15) \p = 33$.
+		\pitem $\fRepr\uhd (268) \p = 10C$.
+	\end{itemize}
+\end{frame}
+
+% binary with set length
+
+
+\newcommand{\definitionOfZkpl}{
+\begin{align*}
+\fZkpl_{\ell}(x) =
+\begin{cases}
+0 \fbin_{\ell-1}(x) & \text{ falls } x\geq 0 \\
+1 \fbin_{\ell-1}(2^{\ell-1} + x) & \text{ falls } x< 0 
+\end{cases}
+\end{align*}
+}
+
+\begin{frame}{Zweierkomplement}
+	\p Was ist mit negative Zahlen?
+	
+	\pause 
+	
+	\begin{block}{Zweierkomplement Darstellung}
+		Die Zweierkomplementdarstellung einer Zahl $x$ \p mit der Länge $\ell$ ist wie folgt definiert:\p
+		\definitionOfZkpl		
+	\end{block}
+\end{frame}
+
 % huffman codierung?
 
 \input{assets/slide-post}
