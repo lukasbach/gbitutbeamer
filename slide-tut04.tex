@@ -3,17 +3,54 @@
 
 %TODO POP Quiz
 
-\section{Vollständige Induktion}
-\begin{frame} {Was ist überhaupt vollständige Induktion?}
+\begin{frame}{Quiz}
 	\begin{itemize}
-		\item Beweisverfahren
-		\item In der Regel zu zeigen: Eine Aussage gilt für alle $n \in \mathbb{N}_+$, manchmal auch für alle $n \in \mathbb{N}_0$
-		\item Man schließt ``induktiv'' von einem n auf n+1
-		\item Idee: Wenn die Behauptung für ein beliebiges \textbf{festes} n gilt, dann gilt sie auch für den Nachfolger n+1 (und somit auch für dessen Nachfolger und schließlich für alle n)
+		\pitem Was macht die Funktion $val_I$?
+		\pitem Was bedeutet Äquivalenz?
+		\pitem Was bedeutet Tautologie und Erfüllbarkeit?
+		\pitem Welche dieser Aussagen sind Tautologien, welche sind erfüllbar?
+		\begin{itemize}
+			\pitem $\lnot (P \land Q) = \lnot P \lor \lnot Q$
+			\pitem $P \land P = P \lor P$
+			%\pitem $(P \lor Q) \land R = (P \land R) \lor (Q \land R)$
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\section{Vollständige Induktion}
+\begin{frame} {Wahrheitsgehalt von unendlich Aussagen}
+	Beispielsituation: \p Wir haben unendlich viele Dominosteine. \p Behauptung: \p Alle Dominosteine fallen um.
+	
+	\begin{itemize}
+		\pitem Wir haben Aussagen: \{``1. Stein fällt um'', ``2. Stein fällt um'', ...\}
+		\pitem Wie zeigen wir unendlich viele Aussagen?
+		\pitem Stelle Aussagen in Abhängigkeit einer Laufvariable $n$ dar:
+		\begin{itemize}
+			\pitem $A(n) := $ ``$n$-ter Stein fällt um'' $\forall n \in \N$.
+		\end{itemize}
+		\pitem Aussage $A := $ ``Alle Steine fallen um'' $\equiv$ $A(i)$ ist wahr $\forall i \in \N$.
+	\end{itemize}
+
+	\p Wir haben immernoch unendlich viele Aussagen...
+	
+	\begin{itemize}
+		\pitem Zeige: $A(1)$ ist wahr\p , sowie $A(i)\text{ gilt } \rightarrow A(i+1)\text{ gilt }$ für beliebiges $i \in \N$.
+		\pitem Also: \p Der erste Stein fällt, sowie: \p falls der $i$-te Stein fällt, so fällt auch der $i+1$-te Stein.
+		\pitem Nach dem Prinzip der vollständigen Induktion fallen dann alle Steine um.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Vollständige Induktion}
+	\begin{itemize}
+		\pitem Beweisverfahren
+		\pitem In der Regel zu zeigen: Eine Aussage gilt für alle $n \in \mathbb{N}_+$, manchmal auch für alle $n \in \mathbb{N}_0$
+		\pitem Man schließt ``induktiv'' von einem n auf n+1
+		\pitem Idee: Wenn die Behauptung für ein beliebiges \textbf{festes} n gilt, dann gilt sie auch für den Nachfolger n+1 (und somit auch für dessen Nachfolger und schließlich für alle n)
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Struktur des Beweises}
+	\pause 
 	Behauptung: (\textit {kurz} \textbf{Beh.:})\\
 	Beweis: (\textit{kurz} \textbf{Bew.:})
 	\begin{itemize}
@@ -36,11 +73,16 @@
 			\item Sonst: Versuche Ausdruck, in dem (n+1) vorkommt umzuformen in einen Ausdruck, in dem nur n vorkommt
 		\end{itemize}
 	\end{itemize}
+
+	\p Vorhin:  \p
+	\begin{align*}
+	\underbrace{A(1) \text{ ist wahr }}_{IA} \text{, sowie } \underbrace{A(i)\text{ gilt }}_{IV} \rightarrow \underbrace{A(i+1) \text{ gilt }}_{IS} \text{ für beliebiges i }\in \N
+	\end{align*}
 \end{frame}
 %Zwei Beispiele, Lösungen siehe gleicher Ordner
 % https://www.cl.cam.ac.uk/~mgk25/kuhn-fa.pdf
 %Einfacheres S.8
-\begin{frame}
+\begin{frame}{Übung zu Vollständiger Induktion}
 	\textbf{Aufgabe}\\
 	\begin{eqnarray*}
 		&x_0 := 0\\
@@ -49,6 +91,17 @@
 	\textit{Zeige mithilfe vollständiger Induktion, dass für alle} $n \in \mathbb{N}_0$ \\
 	\begin{center}$x_n = n^2$\end{center}
 	gilt.
+\end{frame}
+
+\begin{frame}{Übung zu vollständiger Induktion}
+	\begin{taskblock}{Übungsaufgaben}
+		Zeige die Wahrheit folgender Aussagen mit vollständiger Induktion:
+		
+		\begin{itemize}
+			\item $\sum\limits_{i=1}^n i = \frac{n(n+1)}{2}$ $\forall n \in \N$.
+			\item $\sum\limits_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6}$ $\forall n \in \N$
+		\end{itemize}
+	\end{taskblock}
 \end{frame}
 
 \section{Formale Sprache}
@@ -85,15 +138,15 @@
 	Sei $A := \{a, b\}, B := \{A, B, C, D, E, F\}$.
 	
 	\begin{itemize}
-		\pitem Sprache $L_1 \subseteq A$, die zuerst drei $a$'s enthält und dann beliebig viele $b$'s? $L_1 = \{aaa\}\cdot\{b\}^*$.
-		\pitem Sprache $L_2 \subseteq A$, die das Teilwort $ab$ nicht enthält? \pause $L_2 = \{b\}^*\{a\}^*$.
-		\pitem Sprache $L_3 \subseteq A$, die alle Wörter über $A$ enthält außer $\epsilon$? \pause $L_3 = A \cdot A^* \pause = A^* \backslash \{\epsilon\}$.
-		\pitem Sprache $L_4$, die alle erlaubten Java Variablennamen enthält.
+		\pitem Sprache $L_1 \subseteq A^*$, die zuerst drei $a$'s enthält und dann entweder zwei $b$'s oder vier $a$'s? $L_1 = \{aaa\}\cdot\{bb,aaaa\}$.
+		\pitem Sprache $L_2 \subseteq A^*$, die alle Wörter über $A$ enthält außer $\epsilon$? \pause $L_2 = A \cdot A^* \pause = A^* \backslash \{\epsilon\}$.
+		\pitem Sprache $L_3 \subseteq B^*$, die alle Wörter über $B$ enthält, mit:
 		\begin{itemize}
-			\pitem $B := \{\_,a,b,...,z,A,B,...,Z\}$
-			\pitem $C := B \cup \Z_9$
-			\pitem $L_4 \subseteq C \pause = (B \cdot C^*) \backslash \{if, class, while, ...\}$
+			\p\item Zwei beliebigen Zweichen aus B.
+			\p\item Dann einem $C$ oder zwei $D$'s.
+			\p\item Dann vier Zeichen aus A.
 		\end{itemize}
+		\pitem $L_3 \p = B \cdot B \cdot \{C, DD\} \cdot A \cdot A \cdot A \cdot A$.
 	\end{itemize}
 \end{frame}
 
@@ -134,7 +187,7 @@
 		\end{itemize}
 	\end{itemize}
 
-	$(M, \cdot)$ ist damit keine Gruppe\p , es existieren keine Invers-Element.
+	$(M, \cdot)$ ist damit trotzdem keine Gruppe\p , denn es existieren keine Invers-Element.
 \end{frame}
 
 \begin{frame}{Potenz von Sprachen}
@@ -177,6 +230,19 @@
 		\pitem Warum gilt $\epsilon \notin L^+$ von beliebiger formeller Sprache $L$?
 		\pitem $L := \{a, b, c\}.  L^* \pause = \{\epsilon, a, aa, ab, ac, aaa, aab, \dots, b, ba, bb, \dots \}$
 		\pitem $L := \{aa, bc\}.  L^* \pause = \{\epsilon, aa, bc, aa\cdot aa, aa\cdot bc, bc \cdot aa, bc \cdot bc, aa \cdot aa \cdot aa, \dots \}$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Übung zu Konkatenationsabschluss}
+	Sei $A := \{a, b\}, B := \{A, B, C, D, E, F\}$.
+	\begin{itemize}
+		\pitem Sprache $L_1 \subseteq A^*$, die das Teilwort $ab$ nicht enthält? \pause $L_1 = \{b\}^*\{a\}^*$.
+		\pitem Sprache $L_2 \subseteq B^*$, die alle erlaubten Java Variablennamen enthält.
+		\begin{itemize}
+			\pitem $B := \{\_,a,b,...,z,A,B,...,Z\}$
+			\pitem $C := B \cup \Z_9$
+			\pitem $L_2 \subseteq C \pause = (B \cdot C^*) \backslash \{if, class, while, ...\}$
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
@@ -274,6 +340,8 @@
 		\pitem Aber irgendwie so, dass $42_{\in A_{dez}} \stackrel{Deutung}{=} 101010_{\in A_{bin}} \stackrel{Deutung}{=} 52_{\in A_{oct}}$.
 	\end{itemize}
 \end{frame}
+
+\subsection{Kodierung von Zahlen}
 
 \begin{frame}{Definition von Zahlendarstellungen}
 	\pause
@@ -409,6 +477,8 @@
 	\end{tabular}
 \end{frame}
 
+\subsection{Repräsentation von Zahlen}
+
 \newcommand{\definitionOfRepr}{
 	\begin{align*}
 	\fRepr_k(n) =
@@ -476,8 +546,22 @@
 	\end{itemize}
 \end{frame}
 
-% binary with set length
+\subsection{Zweierkomplement-Darstellung}
 
+\begin{frame}{Feste Länge von Binärzahlen}
+	\pause
+	
+	\begin{block}{$bin_\ell$}
+		Die Funktion $\fbin_{\ell}\colon \Z_{2^{\ell}} \to \{0,1\}^{\ell}$ \p  bringt eine gegebene Binärzahl auf eine feste Länge\p , indem sie mit Nullen vorne aufgefüllt wird. \p Formell wird sie definiert als:\p
+		\begin{align*}\fbin_{\ell}(n) = 0^{\ell- |\fRepr_2(n)|} \fRepr_2(n)\end{align*}
+	\end{block}
+
+	\pause Beispiel:
+	\begin{itemize}
+		\pitem $\fbin_8(3) \p = 0^{8 - |\fRepr_2(3)|}\fRepr_2(3) \p = 0^{8 - |11|}\cdot 11 \p = 0^{8 - 2} \cdot 11 \p = 0^6 \cdot 11 = 00000011$.
+		\pitem $\fbin_{16}(3) \p = 0000000000000011$.
+	\end{itemize}
+\end{frame}
 
 \newcommand{\definitionOfZkpl}{
 \begin{align*}
@@ -492,12 +576,36 @@
 \begin{frame}{Zweierkomplement}
 	\p Was ist mit negative Zahlen?
 	
-	\pause 
-	
+	\begin{itemize}
+		\pitem Idee: Verwende das erste Bit, um zu speichern, ob die Zahl positiv oder negativ ist.
+		\pitem Beispiel: \p $5 = \markGreen{0}101_{zkpl}$\p , $-5 = \markGreen{1}101_{zkpl}$.
+	\end{itemize}
+
+	\pause
+
 	\begin{block}{Zweierkomplement Darstellung}
-		Die Zweierkomplementdarstellung einer Zahl $x$ \p mit der Länge $\ell$ ist wie folgt definiert:\p
-		\definitionOfZkpl		
+	Die Zweierkomplementdarstellung einer Zahl $x$ \p mit der Länge $\ell$ ist wie folgt definiert:\p
+	\definitionOfZkpl		
 	\end{block}
+
+	\begin{itemize}
+		\pitem Wieso $\ell - 1$?
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Aufgaben zu Zweierkomplement-Darstellung}
+	\definitionOfZkpl
+	
+	Was sind folgende Zahlen in Zweierkomplement-Darstellung?
+	\begin{itemize}
+		\item $\fZkpl_4 (3)$ \visible<1>{$=0011$.}
+		\item $\fZkpl_4 (7)$ \visible<2>{$=0111$.}
+		\item $\fZkpl_4 (-5)$ \visible<3>{$=1101$.}
+		\item $\fZkpl_8 (13)$ \visible<4>{$=0000 1101$.}
+		\item $\fZkpl_8 (-34)$ \visible<5>{$=1010 0010$.}
+		\item $\fZkpl_8 (-9)$ \visible<6>{$=1000 1001$.}
+	\end{itemize}
 \end{frame}
 
 % huffman codierung?
