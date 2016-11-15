@@ -115,7 +115,7 @@
 	\pause
 	
 	\begin{block}{Formale Sprache}
-		Eine Formale Sprache $L$ \pause über einem Alphabet $A$ ist eine Teilmenge $L \subseteq A$.
+		Eine Formale Sprache $L$ \pause über einem Alphabet $A$ ist eine Teilmenge $L \subseteq A^*$.
 	\end{block}
 
 	\pause Als Beispiel von vorigen Folien:
@@ -135,7 +135,7 @@
 		Von zwei formalen Sprachen $L_1, L_2$ \pause lässt sich das Produkt \pause $L_1 \cdot L_2$ \pause bilden mit \pause $L_1 \cdot L_2 = \{w_1w_2 : w_1 \in L_1 $ und $w_2 \in L_2 \}$.
 	\end{block}
 
-	Sei $A := \{a, b\}, B := \{A, B, C, D, E, F\}$.
+	Sei $A := \{a, b\}, B := \{\alpha, \beta, \gamma, \epsilon, \delta\}$.
 	
 	\begin{itemize}
 		\pitem Sprache $L_1 \subseteq A^*$, die zuerst drei $a$'s enthält und dann entweder zwei $b$'s oder vier $a$'s? $L_1 = \{aaa\}\cdot\{bb,aaaa\}$.
@@ -143,10 +143,10 @@
 		\pitem Sprache $L_3 \subseteq B^*$, die alle Wörter über $B$ enthält, mit:
 		\begin{itemize}
 			\p\item Zwei beliebigen Zweichen aus B.
-			\p\item Dann einem $C$ oder zwei $D$'s.
+			\p\item Dann einem $\epsilon$ oder zwei $\delta$'s.
 			\p\item Dann vier Zeichen aus A.
 		\end{itemize}
-		\pitem $L_3 \p = B \cdot B \cdot \{C, DD\} \cdot A \cdot A \cdot A \cdot A$.
+		\pitem $L_3 \p = B \cdot B \cdot \{\epsilon, \delta\delta\} \cdot A \cdot A \cdot A \cdot A$.
 	\end{itemize}
 \end{frame}
 
@@ -196,7 +196,7 @@
 		Potenz von formellen Sprachen ist wie folgt definiert:
 		\begin{itemize}
 			\pitem $L^0 := \{\epsilon\}$
-			\pitem $L^{i+1} := L^i \cdot L$ für $i \in \N_+$.
+			\pitem $L^{i+1} := L^i \cdot L$ für $i \in \N_0$.
 		\end{itemize}
 	\end{block}
 
@@ -227,7 +227,7 @@
 	\end{block}
 
 	\begin{itemize}
-		\pitem Warum gilt $\epsilon \notin L^+$ von beliebiger formeller Sprache $L$?
+		\pitem Warum gilt $\epsilon \notin L^+$ bei formalen Sprache $L \subseteq A^* \backslash \{\epsilon\}$?
 		\pitem $L := \{a, b, c\}.  L^* \pause = \{\epsilon, a, aa, ab, ac, aaa, aab, \dots, b, ba, bb, \dots \}$
 		\pitem $L := \{aa, bc\}.  L^* \pause = \{\epsilon, aa, bc, aa\cdot aa, aa\cdot bc, bc \cdot aa, bc \cdot bc, aa \cdot aa \cdot aa, \dots \}$
 	\end{itemize}
@@ -284,7 +284,7 @@
 		\begin{column}{0.4\textwidth}
 			$\subseteq$:
 			
-			\p\markBlue{Vorraussetzung:} \p $w \in L^* \cdot L$ mit $w = w'w'', w' \in L^*$ und $w'' \in L$.
+			\p\markBlue{Voraussetzung:} \p $w \in L^* \cdot L$ mit $w = w'w'', w' \in L^*$ und $w'' \in L$.
 			
 			\vspace{.3cm}
 			
@@ -298,7 +298,7 @@
 		\begin{column}{0.6\textwidth}
 			$\supseteq$:
 			
-			\p\markBlue{Vorraussetzung:} \p $w \in L^*\cdot L$.
+			\p\markBlue{Voraussetzung:} \p $w \in L^*\cdot L$.
 			
 			\vspace{.3cm}
 			
