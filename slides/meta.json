@@ -1,0 +1,43 @@
+{
+	"name": "GBI Tutorium",
+	"date": [16, 10, 1, 1],
+	"ico": "group",
+	"shortinfo": "Derzeit halte ich ein Tutorium am KIT im Kurs Grundbegriffe der Informatik. Hier sammle ich alle Tutorienfolien, Infos und sonstige relevante Sachen.",
+	"langspecific": "de",
+	"category": "university",
+
+	"url": false,
+
+	"imgs": [],
+
+	"filecopyright": "cc-by-nc-sa",
+	"files": [
+		{
+			"type": "textfile",
+			"filename": "printslide_slide-tut01.pdf",
+			"description": "Folien zum ersten Tutorium vom 27.10.2016: Mengen, Alphabete, Relationen, Abbildungen."
+		},
+		{
+			"type": "textfile",
+			"filename": "additions_tut01a.pdf",
+			"description": "Nachtrag zum Tutorium vom 27.10.2016: Beweise von Mengengleichheit und Mengenungleichheit."
+		},
+		{
+			"type": "textfile",
+			"filename": "printslide_slide-tut02.pdf",
+			"description": "Folien zum zweitem Tutorium vom 03.11.2016: Wörter, Formale Sprachen."
+		},
+		{
+			"type": "textfile",
+			"filename": "printslide_slide-tut03.pdf",
+			"description": "Folien zum zweitem Tutorium vom 10.11.2016: Aussagenlogik.",
+			"tags": ["Wahrheitstabellen", "Erfüllbarkeit", "Tautologie", "Äquivalenz", "Interpretation", "Boolsche Funktionen"]
+		},
+		{
+			"type": "textfile",
+			"filename": "printslide_slide-tut04.pdf",
+			"description": "Folien zum zweitem Tutorium vom 17.11.2016: Vollständige Induktion, Operationen auf formalen Sprachen, Kodierung.",
+			"tags": ["Vollständige Induktion", "Induktiv", "Formale Sprachen", "Konkatenation von Sprachen", "Potenz von Sprachen", "Konkatenationsabschluss", "Zahlandarstellung", "Binär", "Oktal", "Dezimal", "Hexadezimal", "DualzahL", "Zweierkomplement"]
+		}
+	]
+}
