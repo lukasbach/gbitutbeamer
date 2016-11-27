@@ -4,7 +4,7 @@
 
 %\newcommand{\#}{\markBlue{#1}}
 
-\newcommand{\pitem}{\pause\item}
+%\newcommand{\pitem}{\pause\item}
 \newcommand{\p}{\pause}
 
 % -- MATH MACROS
@@ -39,3 +39,12 @@
 \newcommand{\fbin}{\textbf{bin}}
 \newcommand{\fdiv}{\textbf{ div }}
 \newcommand{\fmod}{\textbf{ mod }}
+
+% Speicherabbild
+\newenvironment{memory}{\begin{tabular}{r | l}Adresse&Wert\\\hline\hline}{\end{tabular}}
+\newcommand{\memrow}[2]{#1 & #2 \\\hline}
+
+% Neue Befehle
+\newcommand{\ip}{\pause} % inline pause, für mitten im satz
+\newcommand{\pitem}{\pause\item} % für aufzählungen
+\newcommand{\bp}{\pause} % block pause, für zwischen blöcken

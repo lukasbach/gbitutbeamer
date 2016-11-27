@@ -30,14 +30,20 @@
 		{
 			"type": "textfile",
 			"filename": "printslide_slide-tut03.pdf",
-			"description": "Folien zum zweitem Tutorium vom 10.11.2016: Aussagenlogik.",
+			"description": "Folien zum dritten Tutorium vom 10.11.2016: Aussagenlogik.",
 			"tags": ["Wahrheitstabellen", "Erfüllbarkeit", "Tautologie", "Äquivalenz", "Interpretation", "Boolsche Funktionen"]
 		},
 		{
 			"type": "textfile",
 			"filename": "printslide_slide-tut04.pdf",
-			"description": "Folien zum zweitem Tutorium vom 17.11.2016: Vollständige Induktion, Operationen auf formalen Sprachen, Kodierung.",
+			"description": "Folien zum vierten Tutorium vom 17.11.2016: Vollständige Induktion, Operationen auf formalen Sprachen, Kodierung.",
 			"tags": ["Vollständige Induktion", "Induktiv", "Formale Sprachen", "Konkatenation von Sprachen", "Potenz von Sprachen", "Konkatenationsabschluss", "Zahlandarstellung", "Binär", "Oktal", "Dezimal", "Hexadezimal", "DualzahL", "Zweierkomplement"]
+		},
+		{
+			"type": "textfile",
+			"filename": "printslide_slide-tut05.pdf",
+			"description": "Folien zum fünften Tutorium vom 24.11.2016: Übersetzungen, Homomorphismen, Huffman-Baum, Speicher.",
+			"tags": ["Übersetzungen", "Homomorphismen", "Huffman-Codierung", "Speicher"]
 		}
 	]
 }
