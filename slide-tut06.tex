@@ -286,8 +286,11 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 	\vspace{.2cm}
 	
 	\begin{columns}
-		\begin{column}{0.5\textwidth}
-			LDC 5 \\ STV $a_1$ \\ LDC 7 \\ STV $a_2$ \\ LDV $a_1$ \\ STV $a_3$ \\ HALT
+		\begin{column}{0.25\textwidth}
+			LDC 5 \\ STV $a_1$ \\ LDC 7 \\ STV $a_2$ \\ $\vdots$
+		\end{column}
+		\begin{column}{0.25\textwidth}
+			 $\vdots$ \\ LDV $a_1$ \\ STV $a_3$ \\ HALT
 		\end{column}
 		
 		\begin{column}{0.5\textwidth}
@@ -404,8 +407,11 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 	\vspace{.2cm}
 	
 	\begin{columns}
-		\begin{column}{0.5\textwidth}
-			LDC 5 \\ NOT \\ RAR \\ NOT \\ RAR \\ RAR \\ EQL 15 \\ EQL 0 \\ HALT
+		\begin{column}{0.25\textwidth}
+			LDC 5 \\ NOT \\ RAR \\ NOT \\ RAR \\ $\vdots$
+		\end{column}
+		\begin{column}{0.25\textwidth}
+			$\vdots$ \\ RAR \\ EQL 15 \\ EQL 0 \\ HALT
 		\end{column}
 		
 		\begin{column}{0.5\textwidth}
@@ -446,19 +452,33 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 	\vspace{.0cm}
 	
 	\begin{columns}
-		\begin{column}{0.5\textwidth}
+		\begin{column}{0.25\textwidth}
 			\begin{align*}
 				& \text{LDC 5} \\
 				a_1: \quad  & \text{JMN } a_2 \\
 				& \text{EQL 1} \\
 				& \text{JMN } a_1 \\
+				%& NOT \\ % sollte nicht erreicht sein
+				%a_2: \quad & \text{JMP } a_3\\
+				%& NOT \\ % sollte nicht erreicht sein
+				%a_3: \quad & HALT
+				\vdots
+			\end{align*}
+		\end{column}
+		\begin{column}{0.25\textwidth}
+			\begin{align*}
+				%& \text{LDC 5} \\
+				%a_1: \quad  & \text{JMN } a_2 \\
+				%& \text{EQL 1} \\
+				%& \text{JMN } a_1 \\
+				\vdots \\
 				& NOT \\ % sollte nicht erreicht sein
 				a_2: \quad & \text{JMP } a_3\\
 				& NOT \\ % sollte nicht erreicht sein
 				a_3: \quad & HALT
 			\end{align*}
 		\end{column}
-		
+	
 		\begin{column}{0.5\textwidth}
 			\begin{memory}
 				\memrow{$1$}{$5$}	
@@ -474,6 +494,20 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 		Schreibe ein MIMA-Programm:
 		\begin{itemize}
 			\item Eingabe: Adresse $a_1$ einer positiven Zahl $x$.
+			\item Ausgabe: Speichert $3 \cdot x$ in $a_1$.
+		\end{itemize}
+	\end{taskblock}
+	
+	\bp \vspace{.5cm} Lösung:
+	
+	LDV $a_1$ \\ ADD $a_1$ \\ ADD $a_1$ \\ STV $a_1$ \\ HALT
+\end{frame}
+
+\begin{frame}{Aufgaben}
+	\begin{taskblock}{MIMA-Programm schreiben}
+		Schreibe ein MIMA-Programm:
+		\begin{itemize}
+			\item Eingabe: Adresse $a_1$ einer positiven Zahl $x$.
 			\item Ausgabe: Speichert $x \fmod 2$ in $a_1$.
 		\end{itemize}
 	\end{taskblock}
@@ -481,6 +515,20 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 	\bp \vspace{.5cm} Lösung:
 	
 	LDC 1 \quad // 000000000000000000000001 \\ AND $a_1$ \\ STV $a_1$ \\ HALT
+\end{frame}
+
+\begin{frame}{Aufgaben}
+	\begin{taskblock}{MIMA-Programm schreiben}
+		Schreibe ein MIMA-Programm:
+		\begin{itemize}
+			\item Eingabe: Adresse $a_1$ einer positiven Zahl $x$.
+			\item Ausgabe: Speichert $x \fdiv 2$ in $a_1$.
+		\end{itemize}
+	\end{taskblock}
+	
+	\bp \vspace{.5cm} Lösung:
+	
+	LDC 1 \\ NOT \\ AND $a_1$ \quad // Setze ``rechtestes'' Bit auf 0 \\ RAR \\ STV $a_1$ \\ HALT
 \end{frame}
 
 \input{assets/slide-post}
