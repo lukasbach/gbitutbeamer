@@ -20,7 +20,7 @@
 		Ein Tupel G = (N, T, S, P) mit
 		\begin{itemize}
 			\pitem $N$ Alphabet (Nichtterminalsymbole)
-			\pitem $T$ Alphabet mit $N \cap S = \emptyset$ (Terminalsymbole)
+			\pitem $T$ Alphabet mit $N \cap T = \emptyset$ (Terminalsymbole)
 			\pitem $S \in N$ (Startsymbol)
 			\pitem $P \subseteq N \times (N \cup T)^* \text{ mit } |P| \in \mathbb{N}_0$
 		\end{itemize}
@@ -183,7 +183,7 @@
 			\pause			
 			\item[$\rightarrow$] $L(G_2) = \{a^{2k}b^{k} | k \in \mathbb{N}_+\} \cup \{a^kb^{2k}| k \in \mathbb{N}_+\}$
 			%\pause
-			%\item Sei $L_3 := \{w \in {a,b}^*| \forall \text{ Präfixe } v \text{ von } w : |N_a(v) - N_b(w)| \leq 1 \}$. Konstruiere eine Grammatik $G_3$ mit $L(G_3) = L_3$
+			%\item Sei $L_3 := \{w \in \{a,b\}^*| \forall \text{ Präfixe } v \text{ von } w : |N_a(v) - N_b(v)| \leq 1 \}$. Konstruiere eine Grammatik $G_3$ mit $L(G_3) = L_3$
 			%\pause
 			%\item[$\rightarrow$] $G_3 = (\{X\}, \{a,b\}, X, \{X\rightarrow abX|baX|a|b|\varepsilon\})$
 		\end{itemize}
