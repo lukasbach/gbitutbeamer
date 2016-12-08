@@ -44,6 +44,12 @@
 			"filename": "printslide_slide-tut05.pdf",
 			"description": "Folien zum fünften Tutorium vom 24.11.2016: Übersetzungen, Homomorphismen, Huffman-Baum, Speicher.",
 			"tags": ["Übersetzungen", "Homomorphismen", "Huffman-Codierung", "Speicher"]
+		},
+		{
+			"type": "textfile",
+			"filename": "printslide_slide-tut06.pdf",
+			"description": "Folien zum fünften Tutorium vom 1.12.2016: MIMA Prozessor und Programmierung",
+			"tags": ["MIMA", "ALU", "Rechenwerk", "Speicherwerk", "Steuerwerk", "BUS", "Maschinenbefehl", "Mikrobefehl"]
 		}
 	]
 }

@@ -196,7 +196,7 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 	\begin{itemize}
 		\item Befehle (eigentlich Bitfolge) schreiben wir als Befehlname und Adresse
 		\begin{itemize}
-			\pitem $001000000000000000101010 \equiv STV 42$
+			\pitem $001000000000000000101010 \equiv STV$ $42$
 		\end{itemize}
 		\pitem $X \leftarrow Y \equiv $ ``Der Variable $X$ wird der Wert $Y$ zugewiesen''
 		
@@ -266,9 +266,9 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 	Beispiele:
 	
 	\begin{itemize}
-		\pitem $LDV 9$ lädt das Datum, das im Speicher bei Adresse $9$ liegt, in den Akku.
-		\pitem $STV 9$ speichert das Datum, das im Akku liegt, in den Speicher an Adresse $9$.
-		\pitem $LDC 4$ lädt die Zahl $4$ in den Akku (also kein Speicherzugriff).
+		\pitem $LDV$ $9$ lädt das Datum, das im Speicher bei Adresse $9$ liegt, in den Akku.
+		\pitem $STV$ $9$ speichert das Datum, das im Akku liegt, in den Speicher an Adresse $9$.
+		\pitem $LDC$ $4$ lädt die Zahl $4$ in den Akku (also kein Speicherzugriff).
 	\end{itemize}
 \end{frame}
 
@@ -344,8 +344,8 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 		
 		\item Beispiele:
 		\begin{itemize}
-			\pitem $ADD 4$ addiert den Wert im Akku mit dem Wert aus dem Speicher an Adresse $4$ und legt das Resultat im Akku ab\ip . Achtung: Addition nicht mit dem Wert $4$!
-			\pitem $AND 3$ führt bitweise Verundung zwischen dem Wert im Akku und dem Wert aus dem Speicher an Adresse $4$ durch und legt das Resultat im Akku ab.
+			\pitem $ADD$ $4$ addiert den Wert im Akku mit dem Wert aus dem Speicher an Adresse $4$ und legt das Resultat im Akku ab\ip . Achtung: Addition nicht mit dem Wert $4$!
+			\pitem $AND$ $3$ führt bitweise Verundung zwischen dem Wert im Akku und dem Wert aus dem Speicher an Adresse $4$ durch und legt das Resultat im Akku ab.
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -383,9 +383,9 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 	\begin{itemize}
 		\pitem $NOT$ invertiert alle Bits des Datums im Akku. \ip Beispiel $NOT$ mit $5$ im Akku, angenommen der Akku speichert bis zu 8 bits\ip : $5_{10} = 00000101_2$, nach der Invertierung: $1111 1010_2$.
 		
-		\pitem $RAR$ rotiert alle Bits des Datums im Akku um eine Stelle nach rechts. \ip Beispiel mit $5$ im Akku: $00000\markBlue{101}_2$ wird zu $000000\markBlue{10}_2$.
+		\pitem $RAR$ rotiert alle Bits des Datums im Akku um eine Stelle nach rechts. \ip Beispiel mit $5$ im Akku: $00000\markBlue{101}_2$ wird zu $\markBlue{1}00000\markBlue{10}_2$.
 		
-		\pitem $EQL adr$ vergleicht den Wert im Akku mit dem Wert bei $addr$.
+		\pitem $EQL$ $adr$ vergleicht den Wert im Akku mit dem Wert bei $addr$.
 		\begin{itemize}
 			\pitem Setzt Akku $= 11\cdots 11$ falls Werte gleich sind.
 			\pitem Setzt Akku $= 00\cdots 00$ falls Werte nicht gleich sind.
@@ -428,8 +428,8 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 		
 		\vspace{.3cm} \bp
 		
-		\item $JMP adr$ führt als nächsten Befehl den an Adresse $adr$ aus.
-		\pitem $JMN adr$ führt als nächsten Befehl den an Adresse $adr$ aus, \markGreen{falls der Akku negativ ist}.
+		\item $JMP$ $adr$ führt als nächsten Befehl den an Adresse $adr$ aus.
+		\pitem $JMN$ $adr$ führt als nächsten Befehl den an Adresse $adr$ aus, \markGreen{falls der Akku negativ ist}.
 		\begin{itemize}
 			\pitem Also wenn das erste Bit im Akku negativ ist.
 			\pitem Wenn vorher ein $EQL$ erfolgreich verglichen hat, wird also gesprungen.

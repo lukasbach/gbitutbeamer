@@ -1,0 +1,353 @@
+\def\tutdate{8.12.2016}
+\input{assets/slide-pre}
+
+\section{Kontextfreie Grammatiken}
+\begin{frame}{Kontextfreie Grammatiken}
+	\ip Zur Rekapitulation...
+	
+	\begin{itemize}
+		\pitem Was ist ein Alphabet, was eine formale Sprache?
+		\pitem Was kennen wir für Operationen auf formalen Sprachen?
+	\end{itemize}
+
+	\bp 
+	
+	Betrachte $L := \{a^nba^n : n \in \N \}$. \ip Wie kann man diese Sprache darstellen?
+\end{frame}
+
+\begin{frame}{Kontextfreie Grammatiken}
+	\begin{block}{Kontextfreie Grammatik}
+		Ein Tupel G = (N, T, S, P) mit
+		\begin{itemize}
+			\pitem $N$ Alphabet (Nichtterminalsymbole)
+			\pitem $T$ Alphabet mit $N \cap S = \emptyset$ (Terminalsymbole)
+			\pitem $S \in N$ (Startsymbol)
+			\pitem $P \subseteq N \times (N \cup T)^* \text{ mit } |P| \in \mathbb{N}_0$
+		\end{itemize}
+	\end{block}
+
+	\begin{itemize}
+		\pitem Was ist $N \times (N \cup T)^*$? \pause Bei $N := \{a,b,c\}, T = \{S, A, B\}$\ip : $N \times (N \cup T)^* = \{(a, abSAcB), (a, SSS), (b, BSabc), ...\}$.
+		\pitem Andere Schreibweise: $P : N \rightarrow (N \cup T)^*$.
+		\pitem Für $(X, w) \in P$ schreibt man $X \rightarrow w$
+		\pitem Statt $\{X\rightarrow w_1, X \rightarrow w_2 \}$ schreibt man auch $\{X \rightarrow w_1 | w_2\}$
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Ableitungsschritt}
+	Erinnerung: $N = Nichtterminalsymbole$, $T = Terminalsymbole$. \pause
+	
+	\begin{block}{Ableitungsschritt}
+		\ip $v \in (N \cup T)^*$  \ip ist in einem Schritt aus $u \in (N \cup T)^*$ ableitbar\ip , wenn 
+		\begin{itemize}
+			\pitem $u = w_1 X w_2 \text{ und } v = w_1 w_X w_2 \text{ für } w_1, w_2 \in (N \cup T)^* $
+			\pitem und $X \rightarrow w_X$ in $P$
+		\end{itemize}
+	\end{block}
+
+	\bp\markBlue{Notation}\\
+	$u\Rightarrow v$\\
+	\bp\markBlue{Beispiel}\\
+	$G:= (\{S,B\}, \{a,b\}, S, \{S \rightarrow aBa|aSa, B \rightarrow b\})$
+	
+	\begin{itemize}
+		\pitem $S \ip\Rightarrow aSa \ip\Rightarrow aaSaa \ip\Rightarrow aaaBaaa \ip\Rightarrow aaabaaa$. \ip Fertig.
+		\pitem $aaaSaaa \not\Rightarrow aaaabaaaa$! \ip $\Rightarrow$ heißt \markGreen{eine} Ableitung!
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Ableitungsfolge}
+	\bp
+	\begin{block}{Ableitungsfolge}
+		Wir definieren $\Rightarrow^i$ für $i \in \mathbb{N}_0$ folgendermaßen:\\\vspace{.3cm}
+		\bp Für $u,v \in (N \cap T)^*$ gelte:
+		\begin{itemize}
+			\pitem $u \Rightarrow^0 v$ genau dann, wenn $u = v$ gilt.
+			\pitem $u \Rightarrow^{i+1} v$ genau dann, wenn ein $w \in (N \cup T)^* $ existiert, für das $u \Rightarrow w \Rightarrow^i v$ gilt.
+			Für $u \Rightarrow^i v$ sagt man "\markGreen{v ist aus $u$ in $i$ Schritten ableitbar}".
+		\end{itemize}
+	\end{block}
+
+	\bp
+
+	\textbf{Beispiel}\\
+	$G:= (\{S,B\}, \{a,b\}, S, \{S \rightarrow aBa|aSa, B \rightarrow b\})$\\
+	\ip Dann gilt $aaaSaaa \Rightarrow^0 aaaSaaa$ \ip \\
+	und $aaaSaaa \Rightarrow^2 aaaabaaaa$
+\end{frame}
+
+\begin{frame}\bp
+	\begin{block}{Ableitbarkeit}
+		Für $u,v \in (N \cup T)^*$ gelte $u \Rightarrow^* v$ \ip genau dann, wenn ein $i \in \mathbb{N}_0$ existiert\ip , mit $u \Rightarrow^i v$. \ip Man sagt dann "\markGreen{v ist aus u ableitbar}".
+	\end{block}\bp
+	\textbf{Beispiel}\\
+	$G:= (\{S,B\}, \{a,b\}, S, \{S \rightarrow aBa|aSa, B \rightarrow b\})$\\
+	\ip Dann gilt $S \Rightarrow^* aaaSaaa$ \ip \\
+	und $aSa \Rightarrow^* aaaabaaaa$ \ip \\
+	aber $aSa \not\Rightarrow abba$.
+\end{frame}
+
+\begin{frame}{Ableitungsbaum}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\pitem Startsymbol ist Wurzel
+				\pitem Nichtterminale sind innere Knoten
+				\pitem Für $X \Rightarrow w $ sind die Zeichen von $w$ die Kinder von X
+				\pitem Terminale sind die Blätter
+			\end{itemize}
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}\bp
+			\textbf{Beispiel}\\
+			$G:= (\{S,B\}, \{a,b\}, S, \{S \rightarrow aBa|aSa, B \rightarrow b\})$\bp\\
+			Dann gilt $S \Rightarrow^* aaabaaa$\\
+			\center \includegraphics[scale=0.7]{images/Ableitungsbaum.png}
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+\begin{frame}{Übung zu Kontextfreien Grammatiken}
+	\begin{taskblock}{Übung}
+		Gegeben ist die Kontextfreie Grammatik (N, T, S, P) mit:
+		
+		\begin{itemize}
+			\item Nichtterminalsymbolen $N := \{A, B, S\}$.
+			\item Terminalsymbolen $T := \{a, b, c\}$
+			\item Startsymbol $S$
+			\item Produktionen $P := \{S \rightarrow aaS | bbS | SAS | \epsilon, A \rightarrow cB , B \rightarrow a, b, c, \epsilon\}$.
+		\end{itemize}
+	
+		\bp
+	
+		Aufgabe: Welche der folgenden Wörter sind ableitbar? Konstruiere den Ableitungsbaum und zeige, wie sie abgeleitet werden.
+		
+		\begin{itemize}
+			\item $ccbbcbbbbcbbaaaa$? %ja
+			\item $aabbaabbaabb$? %ja
+			\item $c$?
+		\end{itemize}
+	\end{taskblock}
+\end{frame}
+
+\begin{frame}{Formale Sprachen erzeugen}
+	\bp\begin{block}{Erzeugte Sprache}
+		Sei $G = (N, T, S, P)$ eine kontextfreie Grammatik. \ip Dann nennen wir $L(G) := \{w \in T^*| S \Rightarrow^* w\}$ die von G erzeugte Sprache.
+	\end{block}
+
+	\bp
+	
+	\begin{block}{Kontextfreie Sprache}
+		Eine formale Sprache $L$ heißt genau dann kontextfrei, wenn eine kontextfreie Grammatik $G$ existiert, mit $L(G) = L$.
+	\end{block}
+
+	\bp
+
+	$G:= (\{S,B\}, \{a,b\}, S, \{S \rightarrow aBa|aSa, B \rightarrow b\})$\\\vspace{.3cm}
+	\ip Dann ist $L(G) = \{a^nba^n|n \in \mathbb{N_+}\}$
+\end{frame}
+
+\begin{frame}{Verständnisfragen}
+	\begin{itemize}
+		\item $G = (\{X\}, \{a,b\}, X, \{X \rightarrow \varepsilon| aX| bX\})$
+		\begin{itemize}
+			\item Welche Wörter lassen sich in drei Schritten ableiten?
+			\pause		 		
+			\item[$\rightarrow$] $\{aa, ab, ba, bb\}$
+			\pause
+			\item Was ist $L(G)$?
+			\pause		 		
+			\item[$\rightarrow$] $L(G) = \{a,b\}^*$
+		\end{itemize}
+		\pause
+		\item Gibt es auch eine Grammatik $G$ mit $L(G) = \{\}$?
+		\pause
+		\item[$\rightarrow$] $G_1 := (\{X\}, \{a,b\}, X, \{X\rightarrow X\})$ oder $G_2 := (\{X\}, \{a,b\}, X, \{\})$
+		\pause
+		\item Wahr oder falsch? Wenn $w_1 \Rightarrow w_2$ gilt, dann gilt auch $w_1 \rightarrow w_2$
+		\pause
+		\item Was ist der Unterschied von $\Rightarrow$ und $\Rightarrow^*$ ?
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{taskblock}{Aufgaben zu kontextfreien Grammatiken}
+		\begin{itemize}
+			\item Sei $L_1 := \{wbaaw'|w, w' \in \{a,b\}^*\}$. Konstruiere eine Grammatik $G_1$ mit $L(G_1) = L_1$.
+			\pause
+			\item[$\rightarrow$] $G_1 := (\{X, Y\}, \{a,b\}, X, \{X \rightarrow YbaaY, Y \rightarrow aY|bY|\varepsilon\})$.
+			\pause
+			\item  Welche Sprache erzeugt $ G_2 = (\{S, X, Y\}, \{a,b\}, S, P_2)$  mit $P_2 = \{S \rightarrow X|Y, X \rightarrow aaXb|aab, Y \rightarrow aYbb|abb\}$?
+			\pause			
+			\item[$\rightarrow$] $L(G_2) = \{a^{2k}b^{k} | k \in \mathbb{N}_+\} \cup \{a^kb^{2k}| k \in \mathbb{N}_+\}$
+			%\pause
+			%\item Sei $L_3 := \{w \in {a,b}^*| \forall \text{ Präfixe } v \text{ von } w : |N_a(v) - N_b(w)| \leq 1 \}$. Konstruiere eine Grammatik $G_3$ mit $L(G_3) = L_3$
+			%\pause
+			%\item[$\rightarrow$] $G_3 = (\{X\}, \{a,b\}, X, \{X\rightarrow abX|baX|a|b|\varepsilon\})$
+		\end{itemize}
+	\end{taskblock}	
+\end{frame}
+
+\begin{frame}{Beispiel zu kontextfreien Grammatiken}
+	$G= (\{X\}, \{\textcolor{blue}{(}, \textcolor{blue}{)}\}, X, \{X \rightarrow XX|\textcolor{blue}{(} X \textcolor{blue}{)}| \varepsilon\} )$
+	\begin{itemize}
+		\pitem Welche Wörter sind ableitbar?
+		\pause
+		\item[$\rightarrow$] "wohlgeformte Klammerausdrücke"
+		\pause
+		\item Welche Eigenschaften besitzen diese Wörter?
+		\pause
+		\item[$\rightarrow$]$N_{\textcolor{blue}{(}}(w) = N_{\textcolor{blue}{)}}(w)$ \pause Ist diese Eigenschaft hinreichend?
+		\pause
+		\item[$\rightarrow$]Nein, es muss gelten: Für alle Präfixe $v$ von $w$ gilt $ N_{\textcolor{blue}{(}}(v) \geq N_{\textcolor{blue}{)}}(v)$
+		\pause
+		\item Andere Grammatik möglich, die alle wohlgeformten Klammerausdrücke erzeugt?
+		\pause
+		\item[$\rightarrow$]  $G= (\{X\}, \{\textcolor{blue}{(}, \textcolor{blue}{)}\}, X, \{X \rightarrow \textcolor{blue}{(} X \textcolor{blue}{)}X| \varepsilon\} )$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grenze kontextfreier Grammatiken}
+	Es gibt auch Sprachen, die wir nicht mit einer kontextfreien Grammatik erzeugen können!
+	
+	\vspace{.3cm} \bp
+	Beispiel aus der Vorlesung:\\
+	$L_{vv} = \{vcv| v \in \{a,b\}^*\} \subseteq \{a, b, c\}^*$
+\end{frame}
+
+
+\section{Relationen vol. 2}
+\begin{frame}{Relationen}
+	\pause
+	\begin{block}{Erinnerung Relationen}
+		Es seien A und B Mengen. \ip Eine Teilmenge $R \subseteq A \times B$ heißt Relation.
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\bp
+	
+	\begin{block}{Definition Produkt von Relationen}
+		Es seinen $A, B \text{ und  } C$ Mengen und $R \subseteq A \times B, S \subseteq B \times C$ Relationen. Dann ist \\$S \circ R := \{(a,c) \in A \times C | \text{ } \exists b \in B \text{ mit } (a,b) \in R \land (b,c) \in S\}$ \\
+		das Produkt der Relationen $R$ und $S$.
+	\end{block}
+	\bp\textbf{Bemerkung}\\
+	\ip $S \circ R$ ist eine Relation auf $A$ und $C$\ip , bildet also von $A$ nach $C$ ab.
+	\bp\begin{block}{Assoziativität des Produktes}
+		Es seien $ A, B, C$ und $D$ Mengen und $R \subseteq A \times B, S \subseteq B \times C$ sowie $T \subseteq C \times D$ Relationen. \ip Dann gilt\ip \\
+		$(T \circ S) \circ R = T \circ (S \circ R)$.
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\bp\begin{block}{Homogene Relation}
+		Es seien A und B Mengen und $R \subseteq A \times B$ eine Relation. \ip $R$ heißt homogen, wenn $A=B$ und heterogen, wenn $A \neq B $ gilt.
+	\end{block}
+	
+	\bp\begin{block}{Identität}
+		Sei $M$ eine Menge. $I_M := \{(x,x)| x \in M\}$		
+	\end{block}
+
+	\bp\begin{block}{Potenz von Relationen}
+		Sei $M$ eine Menge und $R \subseteq M  \times M$ eine homogene Relation. \ip Dann definieren wir $R^i$ für $i \in \mathbb{N}_0$ folgendermaßen: 
+		\begin{itemize}
+			\pitem $R^0 := I_M$
+			\pitem Für alle $i \in \mathbb{N}_0: R^{i+1} := R^i \circ R$
+		\end{itemize}
+	
+		\ip Also $R^4 = R \circ R \circ R \circ R$.
+	\end{block}
+\end{frame}
+
+\begin{frame}{Reflexitivität}
+	\bp\begin{block}{Satz über das neutrale Element}
+		Es seien $A$ und $B$ Mengen und $R \subseteq A \times B$ eine Relation. Dann gilt: $R \circ I_B = R = I_A \circ R$.
+	\end{block}
+	
+	\bp\begin{block}{Reflexivität}
+		Sei M eine Menge und $R \subseteq M \times M$ eine homogene Relation. Wenn für alle $x \in M: (x,x) \in R$, nennt man $R$ reflexiv.
+		
+		\ip Also jedes Element der Definitionsmenge der Relation wird auf sich selbst abgebildet (und vielleicht auch auf andere Elemente abgebildet).
+	\end{block}
+	
+	\bp\begin{block}{Lemma}
+		Sei $M$ eine Menge und $R \subseteq M \times M$ eine homogene Relation. $R$ ist genau dann reflexiv, wenn $I_M \subseteq R$ gilt.
+	\end{block}
+\end{frame}
+
+\begin{frame}{Transitivität}
+	\bp\begin{block}{Transitivität}
+		Sei $M$ eine Menge und $R \subseteq M \times M$ eine homogene Relation. \\ \ip R heißt transitiv, wenn: \ip\\ $\forall x, y, z \in M: (x,y) \in R \land (y, z) \in R \rightarrow (x,z) \in R$
+	\end{block}
+	
+	\bp\begin{block}{Lemma}
+		Sei $M$ eine Menge und $R \subseteq M \times M$ eine homogene Relation. $R$ ist genau dann transitiv, wenn $R \circ R \subseteq R$.
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\textbf{Aufgaben}\\
+	Sei $M := \{1, 2, 3 \}$.
+	\begin{itemize}
+		\item Ist $R:= \{(1,1), (1,2), (2,3)\}$ transitiv? \pause Nein!
+		\pause
+		\item Ist $R$ reflexiv? \pause Nein!
+		\pause
+		\item Wie müsste R aussehen, um transitiv zu sein?
+		\pause
+		\item Ist $S:= \{(1,1), (1,2), (1,3), (2,2), (2,3)\}$ reflexiv? \pause Nein!
+		\pause
+		\item Ist $S$ transitiv? \pause \hspace{0.3cm} Ja!
+		\item Wie müsste S aussehen, um reflexiv zu sein?
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Reflexiv-transitive Hülle}
+	\bp\begin{block}{Definition}
+		Sei M eine Menge und $R \subseteq M \times M$ eine homogene Relation. \\Dann nennt man $R^* := \bigcup\limits_{i \in \mathbb{N}_0} R^i$ die reflexiv-transitive Hülle von R.
+	\end{block}
+	\bp\begin{block}{Satz}
+		\begin{itemize}
+			\item $R^*$ ist reflexiv
+			\item $R^*$ ist transitiv
+			\item $R^*$ ist die kleinste Relation, die reflexiv und transitiv ist und $R \subseteq R^*$ erfüllt.
+		\end{itemize}
+	\end{block}
+	\bp\textbf{Bemerkung}\\
+	\begin{itemize}
+		\item Sei M eine Menge und $R\subseteq M \times M$ eine homogene, reflexive und transitive Relation. Dann gilt $R^* = R$.
+	\end{itemize}
+	
+\end{frame}
+\begin{frame}
+	\textbf{Aufgaben}\\
+	\begin{itemize}
+		\item Sei $M = \{1, 2, 3\}$ und $R := \{(1,1), (1,2), (2,3)\}$ Was ist $R^*$?
+		\pause
+		\item[$\rightarrow$] $R^* = \{(1,1), (1,2), (1,3), (2,2), (2,3), (3,3)\}$ 
+		\pause
+		\item Sei $M$ eine Menge und $R \subseteq M \times M$ eine homogene Relation. Was ist $(R^*)^*$ ?
+		\pause
+		\item[$\rightarrow$]  $(R^*)^* = R^*$
+		\pause
+		\item $M := \{1,2,3,4\} \text{ und } R := \{(1,2), (2,3), (3,4), (4,1)\} \subseteq M \times M$. Ist R reflexiv? Ist R transitiv? \pause \hspace{0.3cm} Nein und nein!
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	Die Relationen $R$ und $S$ über $\mathbb{N}_0$ seien gegeben durch:
+	\begin{itemize}
+		\item Für alle $a, b \in \mathbb{N}_0: aRb \Leftrightarrow a|b$ ($a$ ist Teiler von $b$)
+		\item Für alle $a, b \in \mathbb{N}_0: aSb \Leftrightarrow ggT(a,b) = 1$ 
+	\end{itemize}
+	Prüfe auf Reflexivität und Transitivität!
+	\pause
+	\begin{itemize}
+		\item[$\rightarrow$] R ist transitiv, aber nicht reflexiv.
+		\pause
+		\item[$\rightarrow$] S ist reflexiv, aber nicht transitiv. [TODO]
+	\end{itemize}
+\end{frame}
+\input{assets/slide-post}

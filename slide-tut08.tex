@@ -1,0 +1,52 @@
+\def\tutdate{15.12.2016}
+\input{assets/slide-pre}
+
+% pop quiz
+
+\section{Prädikatenlogik}
+\begin{frame}{Grundlagen zu Prädikatenlogik}
+	Prädikatenlogik (PL) \ip \markBlue{erweitert} Aussagenlogik durch Ergänzen von ``Prädikaten''\ip , einer Art von Funktionen, die Wahrheitswerte zurückgeben.
+	
+	\bp
+	
+	Alphabet der Prädikatenlogik:
+	
+	\begin{itemize}
+		\pitem $\lnot, \land, \lor, \rightarrow, \leftrightarrow, (, )$, also Alphabet der Aussagenlogik.
+		\pitem $\forall$ Allquantor \ip ($\forall x$ heißt ``für alle $x$ gilt...)
+		\pitem $\exists$ Existenzquantor \ip ($\exists x$ heißt ``es existiert min. ein $x$... für das gilt...)
+		\pitem $x,y,z,x_i \in Var_{PL}$ Variablen
+		\pitem $c, d, c_i \in Const_{PL}$ Konstanten
+		\pitem $f, g, h, f_i \in Fun_{PL}$ Funktionen %TODO Selligkeit ar(f_i) = anzahl parameter
+		\pitem $\objequiv$ Objektgleichheit
+		\pitem $,$ Komma
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Gliederung der Prädikatenlogik}
+	\begin{block}{Terme}
+		Ein Term ist ein Element aus der Sprache über $A_{Ter} := \{\markBlue{(}, \markBlue{)}, \markBlue{,}\} \cup Var_{PL} \cup Const_{PL} \cup Fun_{PL}$.
+	\end{block}
+
+	\bp
+	
+	\begin{block}{Atomare Formeln}
+		Atomare Formeln sind zum Beispiel
+		\begin{itemize}
+			\pitem Objektgleichheiten $R_1 \objequiv R_2$
+			\pitem Prädikat von Termen $p(t_1, t_2, ...)$
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Stelligkeit einer Funktion}
+		Die Stelligkeit $ar(f) \in \N_+$ einer Funktion gibt die Anzahl der Parameter von $f$ an.
+	\end{block}
+
+	\bp
+
+	Was sind die Stelligkeiten folgender Funktionen: $f(a, b, c), g(a), h(a, b)$? \pause $4,1,2$.
+	
+	\bp
+\end{frame}
+
+\input{assets/slide-post}
