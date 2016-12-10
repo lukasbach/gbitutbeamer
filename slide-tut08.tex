@@ -18,6 +18,7 @@
 		\pitem $x,y,z,x_i \in Var_{PL}$ Variablen
 		\pitem $c, d, c_i \in Const_{PL}$ Konstanten
 		\pitem $f, g, h, f_i \in Fun_{PL}$ Funktionen %TODO Selligkeit ar(f_i) = anzahl parameter
+		\pitem $R, S, R_i \in Rel_{PL}$ Relationen (funktionieren ähnlich wie Funktionen)
 		\pitem $\objequiv$ Objektgleichheit
 		\pitem $,$ Komma
 	\end{itemize}
@@ -33,20 +34,124 @@
 	\begin{block}{Atomare Formeln}
 		Atomare Formeln sind zum Beispiel
 		\begin{itemize}
-			\pitem Objektgleichheiten $R_1 \objequiv R_2$
-			\pitem Prädikat von Termen $p(t_1, t_2, ...)$
+			\pitem Objektgleichheiten $f_1 \objequiv f_2$
+			\pitem Relation von Termen $R(t_1, t_2, ...)$
 		\end{itemize}
 	\end{block}
 
 	\begin{block}{Stelligkeit einer Funktion}
-		Die Stelligkeit $ar(f) \in \N_+$ einer Funktion gibt die Anzahl der Parameter von $f$ an.
+		Die Stelligkeit $ar(f) \in \N_+$ einer Funktion gibt die Anzahl der Parameter von $f$ an. \ip (Analog Stelligkeit von Relationen $ar(R)$)
+	\end{block}
+	
+	%\bp
+\end{frame}
+
+\begin{frame}{Verständnis von Termen, Atomaren Formeln, Stelligkeit}
+\begin{itemize}
+	\item Woraus kann ein Term bestehen? \pause
+	\item[$\rightarrow$] Aus Klammern $\markBlue{(}, \markBlue{)}$, Kommas $\markBlue{,}$, Variablen, Konstanten, Funktionen.\pause
+	\item Was davon sind atomare Formeln: $R(x) \land S(f(x, c))$, $R(x, g(c, f(y, x))$?\pause
+	\item[$\rightarrow$] Nein, ja.\pause
+	\item Was sind die Stelligkeiten folgender Funktionen: $f(a, b, c), g(a), h(a, b)$? \pause \item[$\rightarrow$] $4,1,2$.
+\end{itemize}	
+\end{frame}
+
+\begin{frame}{Grammatik der Prädikatenlogik}
+	Prädikatenlogische Formeln werden durch die Grammatik $G := (N_{Ter}, A_{Ter}, T, P_{Ter})$ erzeugt mit:
+	
+	\bp
+	
+	\begin{itemize}
+		\pitem $m+1$ Nichtterminalsymbolen $N_{Ter} := \{T\} \cup \{L_i | i \in \N_+ \text{ und } i \leq m \}$ ($m = $ Maximale Stelligkeit von Funktionen)
+		\pitem Terminalsymbolen: Alphabet, aus dem Terme erzeugbar sind
+		%\pitem Startsymbol $T$
+		\pitem Produktionen
+		\begin{alignat*}{2}
+		L_{i+1} &\to L_i , T &\qquad& \text{für jedes } i\in\N_+\text{ mit } i<m   \\
+		L_1  &\to T \\ % ACHTUNG Komma ist hier ein Terminalsymbol, kein Trennsymbol
+		T &\to c_i && \text{für jedes } c_i\in Const_{PL}\\
+		T &\to x_i && \text{für jedes } x_i\in Var_{PL}\\
+		T &\to f_i(L_{ar(f_i)} ) && \text{für jedes } f_i\in Fun_{PL}
+		\end{alignat*}
+	\end{itemize}
+
+	\bp
+	
+	Beispiel: Seien Funktionen $f,g$ mit $ar(f) = 2, ar(g) = 1$, Konstante $c$ und Variablen $x,y$ gegeben. Was kann man damit machen?
+\end{frame}
+
+\begin{frame}{Grammatik der Prädikatenlogik}
+	
+	
+	\begin{columns}
+		\begin{column}{0.6\textwidth}
+			Beispiel: Seien Funktionen $f,g$ mit $ar(f) = 2, ar(g) = 1$, Konstante $c$ und Variablen $x,y$ gegeben. Was kann man damit machen?\vspace{.2cm}
+			
+			\bp
+			
+			Dann: 
+			\begin{itemize}
+				\item $N_{Ter}=\{ T, L_1, L_2 \}$
+				\item $\begin{aligned}[t]
+				P_{Ter} = \{  L_2 & \to L_1 , T \\% ACHTUNG Komma ist hier ein Terminalsymbol, kein Trennsymbol
+				L_1 & \to T  \\
+				T   & \to c \\
+				T   & \to x \\
+				T   & \to y \\
+				T   & \to g ( L_1 ) \\
+				T   & \to f ( L_2 ) \}
+				\end{aligned}
+				$
+			\end{itemize}
+		\end{column}
+		
+		\begin{column}{0.4\textwidth}
+			\bp
+			
+			\begin{taskblock}{Aufgabe zu Grammatiken und Prädikatenlogik}
+				Welche dieser Formeln entsprechen dieser Grammatik?
+				\vspace{.2cm}
+				\begin{itemize}
+					\pitem $f(c, g(x))$
+					\pitem $f(x, y, c)$
+					\pitem $g(f(c, c))$
+					\pitem $g(g(f(g(x), g(f(c, c))))$
+					\pitem $g(c\ip, f)c)$
+				\end{itemize}
+			
+				\ip Bilde die Ableitungsbäume zu den korrekten Formeln.
+			\end{taskblock}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Bindungsstärken}
+	\begin{block}{Bindungsstärke}
+		Verschiedene Operanden ``binden'' stärker als andere. \ip Wenn ein Operand stärker als die umliegenden Operanden bindet, tritt derselbe Effekt auf, wie wenn Klammerung geschehen würde.
 	\end{block}
 
 	\bp
-
-	Was sind die Stelligkeiten folgender Funktionen: $f(a, b, c), g(a), h(a, b)$? \pause $4,1,2$.
 	
+	Bindungsstärken absteigen:
+	\begin{itemize}
+		\ip \item $\forall / \exists\ip,\lnot\ip,\land\ip,\lor\ip,\rightarrow/\leftarrow\ip,\leftrightarrow$
+	\end{itemize}
+
 	\bp
+	
+	Finde äquivalente Formeln, die mit möglichst wenig Klammern auskommen:
+	\begin{itemize}
+		\pitem $\exists x \forall y (R(f(x), g(x)) \lor \forall z R(c, x)$ %TODO finish
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Interpretation von prädikatenlogischen Formeln}
+	
+\end{frame}
+
+\begin{frame}
+
 \end{frame}
 
 \input{assets/slide-post}
