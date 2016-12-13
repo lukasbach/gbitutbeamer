@@ -48,8 +48,19 @@
 		{
 			"type": "textfile",
 			"filename": "printslide_slide-tut06.pdf",
-			"description": "Folien zum fünften Tutorium vom 1.12.2016: MIMA Prozessor und Programmierung",
+			"description": "Folien zum sechsten Tutorium vom 1.12.2016: MIMA Prozessor und Programmierung",
 			"tags": ["MIMA", "ALU", "Rechenwerk", "Speicherwerk", "Steuerwerk", "BUS", "Maschinenbefehl", "Mikrobefehl"]
+		},
+		{
+			"type": "textfile",
+			"filename": "additions_tut06a.pdf",
+			"description": "Nachtrag zum sechsten Tutorium vom 1.12.2016: MIMA Befehlsliste",
+			"tags": ["MIMA", "ALU", "Rechenwerk", "Speicherwerk", "Steuerwerk", "BUS", "Maschinenbefehl", "Mikrobefehl"]
+		},
+		{
+			"type": "textfile",
+			"filename": "printslide_slide-tut07.pdf",
+			"description": "Folien zum siebten Tutorium vom 8.12.2016: Kontextfreie Grammatiken, Relationen"
 		}
 	]
 }

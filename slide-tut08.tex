@@ -146,12 +146,197 @@
 
 \end{frame}
 
-\begin{frame}{Interpretation von prädikatenlogischen Formeln}
+\begin{frame}{Semantik von prädikatenlogischen Formeln}
+	Um prädikatenlogische Formeln zu interpretieren, brauchen wir einige neue Mengen:
 	
+	\begin{itemize}
+		\pitem Interpretation $(D, I)$\ip, bestehend aus...
+		\begin{itemize}
+			\pitem Universum $D \neq \emptyset$ mit...
+			\begin{itemize}
+				\pitem $I(c_i) \in D$ für $c_i \in Const_{PL}$
+				\pitem $I(f_i) : D^{ar(f_i)} \rightarrow D$ für $f_i \in Fun_{PL}$
+				\pitem $I(R_i) \subseteq D^{ar(R_i)}$ für $R_i \in Rel_{PL}$
+				\pitem $I$ bildet weißt also den Komponenten Bedeutungen zu, ``definiert diese''
+			\end{itemize}
+		
+			\pitem Variablenbelegung $\beta : Var_{PL} \rightarrow D$, z.B. $\beta(x) := 3, \beta(y) := 11$
+			\begin{itemize}
+				\pitem $\beta$ definiert also Variablenwerte
+			\end{itemize}
+		\end{itemize}
+	
+		\bp
+	
+		\item Damit können wir prädikatenlogische Formeln definieren!
+	\end{itemize}
+
+	\p
+	
+	\begin{block}{$\pval$}
+		Die Funktion $\pval : L_{Ter} \cup L_{For} \rightarrow D \cup \B$ \ip weißt einer prädikatenlogischen Formel eine Bedeutung \ip (Wahrheitsgehalt für Formeln und Element des Universums für Terme) zu.
+	\end{block}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Quantoren}
+\begin{itemize}
+	\pitem $\forall x p(x)$ heißt\ip: für alle $x \in D$ gilt die Aussage $p(x)$.
+	\pitem $\exists x p(x)$ heißt\ip: für (mindestens) ein $x \in D$ gilt die Aussage $p(x)$.
+	\pitem Gilt $\forall x \exists y \quad p(x,y) = \exists y \forall x \quad p(x,y)$?
+	\begin{itemize}
+		\pause\item Zum Beispiel $p(x,y) := $``Person $x$ ist mit Person $y$ verheiratet.
+		\pause\item Also:
+		\begin{itemize}
+			\pitem $\forall x \exists y \quad p(x,y) = $ Für jede Person $x$ gibt es eine Person $y$, mit der $x$ verheiratet ist.
+			\pitem $\exists y \forall x \quad p(x,y) = $ Es gibt eine Person $y$, sodass für alle Personen $x$ gilt, dass $x$ mit allen Personen $y$ verheiratet ist.
+		\end{itemize}
+		\pitem Eher nicht. \ip Reihenfolge ist also wichtig!
+	\end{itemize}
+\end{itemize}
+\end{frame}
 
+\begin{frame}{Bindungsbereich von Quantoren}
+	Quantoren binden Variablen nur zu der zugehörigen Teilformel.
+	
+	\bp
+	
+	\begin{itemize}
+		\item Zum Beispiel: $p(x) \land \markBlue{\forall x \exists y} \markGreen{(p(x) \land q(x,y,z)} \rightarrow r(x) $
+		\pitem Welcher Teil der Formel muss für alle $x$ gelten? Welcher für alle $y$?
+		\pitem Variablen, die nicht im Wirkungsbereich eines Quantors liegen, nennt man \markGreen{frei}.
+	\end{itemize}
+
+	\bp Überschattung ist möglich\ip, daher durch Quantoren definierte Variablen beziehen sich immer auf den \markBlue{nächsten} Quantor.
+	\begin{itemize}
+		\pitem Ist $\forall x (p(x) \land \forall x (\lnot p(x))))$ erfüllbar?
+		\pause\item Ja: $\forall x (p(x) \land \forall \hat{x} (\lnot p(\hat{x}))))$ 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Bindungsbereich von Quantoren}
+	Substitution ist möglich.\ip Dabei wird eine \markBlue{freie} Variable durch einen Term ersetzt, die Substitution wird mit $\beta[a/b]$ bezeichnet, wobei $a$ durch $b$ ersetzt wird.
+	
+	\vertspace
+	
+	%TODO alternative Schreibweise für Substitution: \sigma_{x/y}
+	
+	\bp
+	
+	Führe die folgenden Subsitutionen durch:
+	\begin{itemize}
+		\pitem $\beta[x/5] (p(x) \lor q(x,y)) \pause = p(5) \lor q(5,y)$
+		\pitem $\beta[x/5] (p(x) \lor \forall x (q(x,y)) \pause = p(5) \lor \forall x (q(x,y))$
+		\pitem $\beta[x/y, y/x, z/f(z)] (p(x) \land q(x,y)) \pause = p(f(z)) \land q(y,x)$
+	\end{itemize}
+
+	\vertspace
+	
+	\bp
+	
+	Welche der Variablen sind gebunden (und durch welche Quantoren), welche sind frei? 
+	\begin{itemize}
+		\pitem $p(x) \rightarrow \forall x \exists y (p(x) \land q(y,z) \leftrightarrow \forall z (q(x,z)))$
+		\pitem $\forall y(p(f(x,y))) \lor \exists z(q(z,f(y,z)))$
+	\end{itemize}
+
+	%TODO kollisionsfreiheit fehlt noch, evtl daran erklären
+\end{frame}
+
+\begin{frame}{Beispiel zur Semantik}
+	Unterschied zwischen $\pval$ und $I$? \pause $I$ ist für Einzelteilen (Konstanten, Funktionen, Relationen) eine Bedeutung zuweist, und $\pval$ einer ganzen Formel eine Bedeutung zuweist.\pause\vertspace
+	
+	Beispiel:\vertspace\ip
+	
+	Sei $D := \N_0, I(c) := 10, ar(f) := 2, ar(p) := 1, ar(q) := 2, \beta(x) := 7$.\ip
+	
+	Sei $I(f) : \N_0^2 \rightarrow \N_0, (x,y) \mapsto x-y$.\ip
+	
+	Sei $ar(R) := 2, I(R) := \{(x,y) | x \leq y\}$.\ip
+	
+	Sei $I(p(x)) = w :\Leftrightarrow x \geq 5, I(q(x,y)) = w :\Leftrightarrow x \geq y$.
+\end{frame}
+
+\begin{frame}{Beispiel zur Semantik}
+	
+	Sei $D := \N_0, I(c) := 10, ar(f) := 2, ar(p) := 1, ar(q) := 2, \beta(x) := 7$.
+	
+	Sei $I(f) : \N_0^2 \rightarrow \N_0, (x,y) \mapsto x-y$.
+	
+	Sei $ar(R) := 2, I(R) := \{(x,y) | x \leq y\}$.
+	
+	Sei $I(p(x)) = w :\Leftrightarrow x \geq 5, I(q(x,y)) = w :\Leftrightarrow x \geq y$.
+	
+	\begin{itemize}
+		\item $T_1 := p(x) \rightarrow \exists y (q(y,x) \land p(y))$, was ist $\pval(T_1)$?
+		
+		\pause
+		\begin{itemize}
+			\item Wähle $y = 8 \in \N_0$. \ip Dann: $I(q(8,7)) = w\ip, I(p(8)) = w$\ip, also $\pval(\exists y (q(y,x) \land p(y))) = w$\ip, und $\pval(T_1) = w$.
+		\end{itemize}
+		
+		\pause
+		
+		\item $T_2 := p(x) \rightarrow \exists y (q(f(c,y), x) \land p(y))$, was ist $\pval(T_2)$?
+		
+		\pause
+		\begin{itemize}
+			\item $\pval(p(x)) = w$
+			\ip\item $\pval(q(f(c,y), x)) \ip = \pval(q(f(10,y), x))\ip = \pval(q(10-y, 7))\ip = w$ für $y \in \{0,1,2\}$.
+			\ip\item $\pval(p(y)) = w$ für $y \geq 5$.
+			\ip\item Also: $\pval(T_2) = f$.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Aufgaben zu Prädikatenlogik}
+	\begin{taskblock}{Aufgaben zu Prädikatenlogik}
+		Gegeben sind folgende Prädikate:
+		\begin{itemize}
+			\item $Vater(x,y) := $ wahr, gdw. $x$ Vater von $y$ ist, analog $Mutter(x,y)$.
+			\item $M"annlich(x,y) := $ wahr, gdw. $x$ männlich ist, analog $Weiblich(x)$.
+			\item $Verheiratet(x,y) := $ wahr, gdw. $x$ und $y$ verheiratet sind.
+		\end{itemize}
+	
+	
+		Drücke die folgenden Aussagen mit prädikatenlogischen Formeln aus:
+		
+		\begin{itemize}
+			\pitem Jede männliche Person hat eine Mutter.
+			\begin{itemize}
+				\pause\item $\forall x \exists y (M"annlich(x) \rightarrow Mutter(y,x))$
+				\pause\item Kann eine Person jetzt auch mehr als eine Mutter haben? \pause Widerspricht das der ursprünglichen Aussage?
+			\end{itemize}
+			\pitem Jeder Mann hat Kinder (plural!).
+			\begin{itemize}
+				\pause\item $\forall x \exists y \exists z (M"annlich(x) \rightarrow ( Vater(x,y) \land Vater(x,z) \land \lnot (y \objequiv z)))$
+			\end{itemize}
+		\end{itemize}
+	\end{taskblock}
+\end{frame}
+
+\begin{frame}{Aufgaben zu Prädikatenlogik}
+	\begin{taskblock}{Aufgaben zu Prädikatenlogik}
+		Gegeben sind folgende Prädikate:
+		\begin{itemize}
+			\item $Vater(x,y) := $ wahr, gdw. $x$ Vater von $y$ ist, analog $Mutter(x,y)$.
+			\item $M"annlich(x,y) := $ wahr, gdw. $x$ männlich ist, analog $Weiblich(x)$.
+			\item $Verheiratet(x,y) := $ wahr, gdw. $x$ und $y$ verheiratet sind.
+		\end{itemize}
+		
+		
+		Drücke die folgenden Aussagen mit prädikatenlogischen Formeln aus:
+		
+		\begin{itemize}
+			\pitem Jede Frau ist mit höchstens einem Mann verheiratet.
+			\begin{itemize}
+				\pause\item $\forall x \forall y \forall z (Weiblich(x) \land((M"annlich(y) \land M"annlich(z) \land \lnot (y \objequiv z) \land Verheiratet(x,y)) \rightarrow \lnot Verheiratet(x,z)))$
+			\end{itemize}
+			\pitem Wer männlich ist, ist nicht weiblich und umgekehrt.
+			\begin{itemize}
+				\pause\item $\forall x (M"annlich(x) \rightarrow \lnot Weiblich(x) \land Weiblich(x) \rightarrow \lnot M"annlich(x))$
+			\end{itemize}
+		\end{itemize}
+	\end{taskblock}
 \end{frame}
 
 \input{assets/slide-post}
