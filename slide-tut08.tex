@@ -52,7 +52,7 @@
 	\item[$\rightarrow$] Aus Klammern $\markBlue{(}, \markBlue{)}$, Kommas $\markBlue{,}$, Variablen, Konstanten, Funktionen.\pause
 	\item Was davon sind atomare Formeln: $R(x) \land S(f(x, c))$, $R(x, g(c, f(y, x))$?\pause
 	\item[$\rightarrow$] Nein, ja.\pause
-	\item Was sind die Stelligkeiten folgender Funktionen: $f(a, b, c), g(a), h(a, b)$? \pause \item[$\rightarrow$] $4,1,2$.
+	\item Was sind die Stelligkeiten folgender Funktionen: $f(a, b, c), g(a), h(a, b)$? \pause \item[$\rightarrow$] $3,1,2$.
 \end{itemize}	
 \end{frame}
 
@@ -132,7 +132,7 @@
 
 	\bp
 	
-	Bindungsstärken absteigen:
+	Bindungsstärken absteigend:
 	\begin{itemize}
 		\ip \item $\forall / \exists\ip,\lnot\ip,\land\ip,\lor\ip,\rightarrow/\leftarrow\ip,\leftrightarrow$
 	\end{itemize}
@@ -190,11 +190,11 @@
 	
 	\bp
 	
-	Führe die folgenden Subsitutionen durch:
+	Führe die folgenden Substitutionen durch:
 	\begin{itemize}
 		\pitem $\beta[x/5] (p(x) \lor q(x,y)) \pause = p(5) \lor q(5,y)$
 		\pitem $\beta[x/5] (p(x) \lor \forall x (q(x,y)) \pause = p(5) \lor \forall x (q(x,y))$
-		\pitem $\beta[x/y, y/x, z/f(z)] (p(x) \land q(x,y)) \pause = p(f(z)) \land q(y,x)$
+		\pitem $\beta[x/y, y/x, z/f(z)] (p(z) \land q(x,y)) \pause = p(f(z)) \land q(y,x)$
 	\end{itemize}
 
 	\vertspace
@@ -222,7 +222,7 @@
 				\pitem $I(c_i) \in D$ für $c_i \in Const_{PL}$
 				\pitem $I(f_i) : D^{ar(f_i)} \rightarrow D$ für $f_i \in Fun_{PL}$
 				\pitem $I(R_i) \subseteq D^{ar(R_i)}$ für $R_i \in Rel_{PL}$
-				\pitem $I$ bildet weißt also den Komponenten Bedeutungen zu, ``definiert diese''
+				\pitem $I$ weißt also den Komponenten Bedeutungen zu, ``definiert diese''
 			\end{itemize}
 			
 			\pitem Variablenbelegung $\beta : Var_{PL} \rightarrow D$, z.B. $\beta(x) := 3, \beta(y) := 11$
