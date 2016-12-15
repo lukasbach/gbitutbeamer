@@ -146,38 +146,6 @@
 
 \end{frame}
 
-\begin{frame}{Semantik von prädikatenlogischen Formeln}
-	Um prädikatenlogische Formeln zu interpretieren, brauchen wir einige neue Mengen:
-	
-	\begin{itemize}
-		\pitem Interpretation $(D, I)$\ip, bestehend aus...
-		\begin{itemize}
-			\pitem Universum $D \neq \emptyset$ mit...
-			\begin{itemize}
-				\pitem $I(c_i) \in D$ für $c_i \in Const_{PL}$
-				\pitem $I(f_i) : D^{ar(f_i)} \rightarrow D$ für $f_i \in Fun_{PL}$
-				\pitem $I(R_i) \subseteq D^{ar(R_i)}$ für $R_i \in Rel_{PL}$
-				\pitem $I$ bildet weißt also den Komponenten Bedeutungen zu, ``definiert diese''
-			\end{itemize}
-		
-			\pitem Variablenbelegung $\beta : Var_{PL} \rightarrow D$, z.B. $\beta(x) := 3, \beta(y) := 11$
-			\begin{itemize}
-				\pitem $\beta$ definiert also Variablenwerte
-			\end{itemize}
-		\end{itemize}
-	
-		\bp
-	
-		\item Damit können wir prädikatenlogische Formeln definieren!
-	\end{itemize}
-
-	\p
-	
-	\begin{block}{$\pval$}
-		Die Funktion $\pval : L_{Ter} \cup L_{For} \rightarrow D \cup \B$ \ip weißt einer prädikatenlogischen Formel eine Bedeutung \ip (Wahrheitsgehalt für Formeln und Element des Universums für Terme) zu.
-	\end{block}
-\end{frame}
-
 \begin{frame}{Quantoren}
 \begin{itemize}
 	\pitem $\forall x p(x)$ heißt\ip: für alle $x \in D$ gilt die Aussage $p(x)$.
@@ -241,6 +209,40 @@
 
 	%TODO kollisionsfreiheit fehlt noch, evtl daran erklären
 \end{frame}
+
+
+\begin{frame}{Semantik von prädikatenlogischen Formeln}
+	Um prädikatenlogische Formeln zu interpretieren, brauchen wir einige neue Mengen:
+	
+	\begin{itemize}
+		\pitem Interpretation $(D, I)$\ip, bestehend aus...
+		\begin{itemize}
+			\pitem Universum $D \neq \emptyset$ mit...
+			\begin{itemize}
+				\pitem $I(c_i) \in D$ für $c_i \in Const_{PL}$
+				\pitem $I(f_i) : D^{ar(f_i)} \rightarrow D$ für $f_i \in Fun_{PL}$
+				\pitem $I(R_i) \subseteq D^{ar(R_i)}$ für $R_i \in Rel_{PL}$
+				\pitem $I$ bildet weißt also den Komponenten Bedeutungen zu, ``definiert diese''
+			\end{itemize}
+			
+			\pitem Variablenbelegung $\beta : Var_{PL} \rightarrow D$, z.B. $\beta(x) := 3, \beta(y) := 11$
+			\begin{itemize}
+				\pitem $\beta$ definiert also Variablenwerte
+			\end{itemize}
+		\end{itemize}
+		
+		\bp
+		
+		\item Damit können wir prädikatenlogische Formeln definieren!
+	\end{itemize}
+	
+	\p
+	
+	\begin{block}{$\pval$}
+		Die Funktion $\pval : L_{Ter} \cup L_{For} \rightarrow D \cup \B$ \ip weißt einer prädikatenlogischen Formel eine Bedeutung \ip (Wahrheitsgehalt für Formeln und Element des Universums für Terme) zu.
+	\end{block}
+\end{frame}
+
 
 \begin{frame}{Beispiel zur Semantik}
 	Unterschied zwischen $\pval$ und $I$? \pause $I$ ist für Einzelteilen (Konstanten, Funktionen, Relationen) eine Bedeutung zuweist, und $\pval$ einer ganzen Formel eine Bedeutung zuweist.\pause\vertspace
