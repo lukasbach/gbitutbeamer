@@ -61,6 +61,22 @@
 			"type": "textfile",
 			"filename": "printslide_slide-tut07.pdf",
 			"description": "Folien zum siebten Tutorium vom 8.12.2016: Kontextfreie Grammatiken, Relationen"
+		},
+
+		{
+			"type": "textfile",
+			"filename": "printslide_slide-tut08.pdf",
+			"description": "Folien zum achten Tutorium vom 15.12.2016: Prädikatenlogik"
+		},
+		{
+			"type": "textfile",
+			"filename": "printslide_slide-tut09.pdf",
+			"description": "Folien zum neunten Tutorium vom 22.12.2016: Algorithmen, Hoare-Kalkül"
+		},
+		{
+			"type": "textfile",
+			"filename": "printslide_slide-tut010.pdf",
+			"description": "Folien zum zehnten Tutorium vom 12.01.2017: Einführung zu Graphentheorie"
 		}
 	]
 }
