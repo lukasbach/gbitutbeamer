@@ -75,8 +75,13 @@
 		},
 		{
 			"type": "textfile",
-			"filename": "printslide_slide-tut010.pdf",
+			"filename": "printslide_slide-tut10.pdf",
 			"description": "Folien zum zehnten Tutorium vom 12.01.2017: Einführung zu Graphentheorie"
+		},
+		{
+			"type": "textfile",
+			"filename": "printslide_slide-tut11.pdf",
+			"description": "Folien zum elften Tutorium vom 19.01.2017: Graphen im Rechner, Einführung in Komplexitätstheorie"
 		}
 	]
 }
