@@ -6,7 +6,6 @@
 	\begin{itemize}
 		\pitem Was ist $\Omega(f), \Theta(f), \okalk(f)$?
 		\pitem Wieso messen wir nicht einfach Laufzeit in ``Anzahl Operationen''?
-		
 	\end{itemize}
 \end{frame}
 
@@ -46,6 +45,10 @@
 	\begin{itemize}
 		\pitem $4n^4 + 3c^6 \in \Theta(n^4)$? \pause Ja\ip, $c$ ist eine Konstante, $3c^6=(3c^6)n^0$ hat eine kleinere Potenz als $n^4$.
 		\pitem $\log_{4213}(n) \in \Theta(\log_2(n)$ \pause Ja\ip, die Basis des Logarithmus ist im O-Kalkül egal.
+		
+		\begin{itemize}
+			\pitem Grund: $\okalk(\log_b n) \ip= \okalk(\frac{\log_a n}{\log_a b}) \ip = \okalk(\frac{1}{\log_a b}\log_a n) \ip = \okalk(\log_a n)$.
+		\end{itemize}
 		
 		\pitem $n! \in \Theta(n^{\pi e 2000})$ \pause Nein\ip, Fakultät wächst asymptotisch schneller als fast alles andere.
 	\end{itemize}
@@ -161,6 +164,58 @@
 		\pitem $\okalk (n^2) \cap \okalk(n) = \okalk(?)$? \pause $= \okalk(n)$.
 		\pitem $\okalk(n^2) \cap \Omega(n^3) = \pause \emptyset$
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundlegende Reihenfolge von Größen}
+	\begin{center}
+		$1 \curlyeqprec \log n \curlyeqprec n \log n \curlyeqprec n^2 \curlyeqprec n^3 \curlyeqprec n^{10000} \curlyeqprec n^2 \curlyeqprec 3^n \curlyeqprec 1000^n \curlyeqprec n! \curlyeqprec n^n$
+	\end{center}
+\end{frame}
+
+\begin{frame}{Mathematische Definitionen}
+	\begin{align*}
+	f(n) \in \Omega(g(n)) \Leftrightarrow 0 < \liminf_{n \rightarrow \infty} \frac{f(n)}{g(n)} \leq \infty\\
+	f(n) \in \Theta(g(n)) \Leftarrow  0 <  \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = c < \infty\\
+	f(n) \in \mathcal{O}(g(n)) \Leftrightarrow 0 \leq \limsup_{n \rightarrow \infty} \frac{f(n)}{g(n)} = c < \infty
+	\end{align*}
+	
+	\bp
+	
+	\begin{taskblock}
+		% Aufgaben sind vom ersten Algo Blatt letzten Jahres, Lösung: https://crypto.iti.kit.edu/fileadmin/User/Lectures/Algorithmen_SS16/loesung_01.pdf
+		Zeige:
+		\begin{itemize}
+			\item $3n^2 + 14n + 159 \in \Theta(n^2)$ %a1 a i
+			\item $\log n^2 \in \Theta(\log n^3)$ %a1 b ii
+			\item $\log^2 n \in \okalk(\log^3 n)$ %a1 b i
+		\end{itemize}
+	\end{taskblock}
+\end{frame}
+
+\begin{frame}{Komplexität mit vollständiger Induktion beweisen}
+	% Ebenfalls vom Algo blatt. Vielleicht nur kurz zeigen bzw vorrechnen, eher nur um nochmal vollst Induktion zu zeigen.
+	
+	\begin{taskblock}
+		Zeige mittels vollständiger Induktion:
+		\begin{itemize}
+			\item $2^n \in \Theta(n^3)$ %a1 a ii
+			\item $(n+1)! \in \Theta(n! + 2^n)$ %a1 b iii
+		\end{itemize}
+	\end{taskblock}
+\end{frame}
+
+\begin{frame}
+	\begin{tabular}{| r || l |}
+		\hline Größenordnung & Bezeichnung\\\hline\hline\ip 
+		
+		$\okalk(1)$ & konstante Laufzeit \\\hline\ip 
+		$\okalk(\log n)$ & logarithmische Laufzeit \\\hline\ip 
+		$\okalk(\log^2 n)$ & quadratisch logarithmische Laufzeit \\\hline\ip 
+		$\okalk(n)$ & lineare Laufzeit \\\hline\ip 
+		$\okalk(n^2)$ & quadratische Laufzeit \\\hline\ip 
+		$\okalk(n^3)$ & kubische Laufzeit \\\hline\ip 
+		$\okalk(n^k)$ & polynomielle Laufzeit \\\hline
+	\end{tabular}
 \end{frame}
 
 \begin{frame}
