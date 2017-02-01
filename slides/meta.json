@@ -82,6 +82,11 @@
 			"type": "textfile",
 			"filename": "printslide_slide-tut11.pdf",
 			"description": "Folien zum elften Tutorium vom 19.01.2017: Graphen im Rechner, Einführung in Komplexitätstheorie"
+		},
+		{
+			"type": "textfile",
+			"filename": "printslide_slide-tut12.pdf",
+			"description": "Folien zum elften Tutorium vom 26.01.2017: Komplexitätstheorie, O-Kalkül, Mastertheorem"
 		}
 	]
 }

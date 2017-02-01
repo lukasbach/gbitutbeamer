@@ -17,9 +17,9 @@ FOR %%f in (*.tex) DO (
 	)
 )
 
-REM pdflatex slides_tutall.tex
-REM pdflatex slides_tutall.tex
-REM MOVE slides_tutall.pdf slides\slides_tutall.pdf
+pdflatex slides_tutall.tex
+pdflatex slides_tutall.tex
+MOVE slides_tutall.pdf slides\slides_tutall.pdf
 	
 cleanup.bat
 pause
