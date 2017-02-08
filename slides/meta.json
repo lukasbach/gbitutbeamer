@@ -95,6 +95,11 @@
 		},
 		{
 			"type": "textfile",
+			"filename": "printslide_slide-tut14.pdf",
+			"description": "Folien zum vierzehnten Tutorium vom 09.02.2017: Turingmaschinen, Entscheidbarkeit"
+		},
+		{
+			"type": "textfile",
 			"filename": "slides_tutall.pdf",
 			"description": "Zusammenstellung aller Folien in einem PDF-Paket"
 		}

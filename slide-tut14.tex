@@ -148,13 +148,72 @@
 
 	Wann hält also eine Turingmaschine \markBlue{nicht}?
 	
+	\bp
+	
 	\begin{block}{Nicht-Halten einer Turingmmaschine}
 		Wenn eine Turingmaschine in eine endlose Schleife gerät, so \markGreen{hält sie nicht}.
 	\end{block}
 \end{frame}
 
 \begin{frame}{Entscheidbarkeit}
-	%todo
+	\ip
+	
+	\begin{block}{Durch Turingmaschine akzeptierte Sprache}
+		Eine Turingmaschine \markBlue{akzeptiert} eine formale Sprache $L$, wenn sie für jedes Wort $w \in L$ in einem akzeptierenden Zustand hält.
+	\end{block}
+
+	\bp
+
+	\begin{block}{Entscheidbare Sprache}
+		Eine formale Sprache $L$ heißt \markBlue{entscheidbar}, wenn es eine Turingmaschine gibt, die \markGreen{immer hält} und $L$ akzeptiert.
+	\end{block}
+
+	\bp
+
+	\begin{block}{Aufzählbare Sprache}
+		Eine formale Sprache $L$ heißt \markBlue{aufzählbar}, wenn es eine Turingmaschine gibt, die $L$ akzeptiert.
+	\end{block}
+\end{frame}
+
+\begin{frame}{Vom endlichen Akzeptor zur Turingmaschine}
+	\begin{taskblock}{Akzeptieren von Turingmaschinen}
+		Wie kann man aus dem gegebenen endlichen Akzeptor eine Turingmaschine machen, die dieselbe Sprache akzeptiert?
+	\end{taskblock}
+
+	\includegraphics[scale=0.5]{images/AufgAkzeptor2.png}
+\end{frame}
+
+\begin{frame}{Lösung}
+	Einfach gesagt: mache aus jedem Übergang $a$ einen Turingmaschinen-Übergang der Art $a|a,R$, also bei jedem Zeichen mache den Zustandsübergang, überschreibe aber das Zeichen nicht und gehe zum nächsten Zeichen.
+	
+	\vspace{.2cm}
+	\bp
+	
+	Formaler ausgedrückt? \pause 
+	\begin{itemize}
+		\item Für allgemeinen endlichen Akzeptor $(Z, z_0, X, f, Y, h)$, definiere eine Turingmaschine $T := (Z, z_0, X \cup Y, f, g, h)$, also $Z, z_0, f$ gleich und mit Bandalphabet $=$ Eingabealphabet $\cup$ Ausgabealphabet
+		\item $g(z, x) := x \quad \forall (z,x)$ in $f$ definiert
+		\item $m(z, x) := R \quad \forall (z,y)$ in $f$ definiert		
+	\end{itemize}
+
+	\bp
+	
+	Jeder endliche Akzeptor kann so zu einer Turingmaschine umgeformt werden, die dieselbe Sprache akzeptiert.
+\end{frame}
+
+\begin{frame}{Über endliche Akzeptoren hinaus}
+	Sei $L$ die Sprache von Palindromen über $\{a,b\}$ ($L = \{aabaa, bbababb, aa, \epsilon\}$). 
+	
+	\begin{itemize}
+		\pitem Ist die Sprache regulär, also gibt es einen endlichen Akzeptor, der diese akzeptiert? \pause Nein.
+		\pitem Ist die Sprache entscheidbar, also gibt es eine stets haltende Turingmaschine, die $L$ akzeptiert?
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Palindromerkennung mit Turingmaschinen}
+	Ja, nämlich: 
+		
+	\includegraphics[scale=0.5]{images/turingmaschine_palindrome.png}	
 \end{frame}
 
 \begin{frame}{Turingmaschinen Entwurfsaufgabe}
@@ -225,6 +284,7 @@
 		\pitem Inhalt des Bandes
 	\end{itemize}
 
+	\bp
 	\vspace{.2cm}
 	
 	\begin{block}{Konfiguration von Turingmaschinen}
@@ -290,8 +350,71 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}{Halteproblem und Busy Beaver}
-	%todo
+\begin{frame}{Halteproblem}
+	\markBlue{Halteproblem}: Für einen gegebenen Algorithmus, gelingt dieser bei seiner Abarbeitung zu einem Ende und hält?
+	
+	\begin{itemize}
+		\pitem Algorithmen können durch Turingmaschinen durchgeführt werden
+		\pitem Turingmaschinen können durch sogenannte universelle Turingmaschinen simuliert werden
+		\begin{itemize}
+			\pitem Wenn eine Turingmaschine $T$ kodiert ist mit dem Wort $w$, dann ist $T_w: X \rightarrow X$ eine Funktion, die Eingaben auf die Ausgabe der Turingmaschine $T$ mappt.
+			\pitem Also mit $X = \{1,0\}$ gibt z.B. $T_w(100101) = 001$ genau dann zurück, wenn, sofern man $100101$ als Eingabe an die Turingmaschine mit der Kodierung $w$ gibt, diese hält und als Ausgabe $001$ erzeugt.
+		\end{itemize}
+	\end{itemize}
+
+	\bp
+	
+	Dann lässt sich das Halteproblem auch als Sprache formulieren:
+	
+	\vspace{.2cm}
+	
+	$\quad H = \{w \in A^* : w \text{ ist eine TM-Codierung und } T_w(w) \text{ hält.}\}$
+	
+	bzw. als allgemeinerer Fall:
+	
+	$\quad \hat{H} = \{(w,x) \in A^* \times A^* : w \text{ ist eine TM-Codierung und } T_w(x) \text{ hält.}\}$
+\end{frame}
+
+\begin{frame}{Halteproblem}
+	Das Halteproblem ist unentscheidbar\ip, dh. es gibt keine Turingmaschine, die $H$ entscheidet.
+\end{frame}
+
+\begin{frame}{Busy Beaver}
+	\markBlue{Busy Beaver TM} ist eine Turingmaschine mit $n$ Zuständen, die möglichst viele Einsen auf das Band schreibt \markBlue{und hält}.
+	
+	\begin{itemize}
+		\pitem Also nicht einfach ewig Einsen aufschreibt und nie aufhört.
+	\end{itemize}
+	
+	\bp
+	
+	\markBlue{Busy Beaver Problem}: Für eine gegebene Turingmaschine mit $n$ Zuständen, die Einsen aufschreibt und hält: Schreibt sie auch maximal viele Einsen auf?
+	
+	\bp
+	\vspace{.2cm}
+	
+	Das Busy Beaver Problem ist nicht entscheidbar, bzw. die Busy Beaver Funktion $bb(n)$, die definiert, wieviele einsen von einer Busy Beaver TM maximal geschrieben werden können, ist nicht berechenbar.
+	
+	\bp
+	
+	\vspace{.2cm}
+	
+	Beispielwerte von $bb$: $bb(1) = 1\ip, bb(2) = 4\ip, bb(5) \geq 4098\ip, bb(6) > 10^{18276}$.
+\end{frame}
+
+\begin{frame}{Busy Beaver für $n = 3$}
+	% 3 zustände und ein haltezustand	
+	\includegraphics[scale=0.8]{images/turingmaschine_bb.png}	
+\end{frame}
+
+\begin{frame}{Organisatorisches}
+	% Noch zeigen:
+	% assets/Tut14E_AufgabenverteilungBis12-13.png (jetzt aber mit prädikatenlogik und evtl mima!)
+	% assets/Tut14F_Notenverteilung11-12.png 
+	\begin{itemize}
+		\item Alle Folien und Folienpaket jetzt online.
+		\item Fragen zur Klausur oder zur Vorbereitung?
+	\end{itemize}
 \end{frame}
 
 \input{assets/slide-post}
