@@ -86,7 +86,17 @@
 		{
 			"type": "textfile",
 			"filename": "printslide_slide-tut12.pdf",
-			"description": "Folien zum elften Tutorium vom 26.01.2017: Komplexitätstheorie, O-Kalkül, Mastertheorem"
+			"description": "Folien zum zwölften Tutorium vom 26.01.2017: Komplexitätstheorie, O-Kalkül, Mastertheorem"
+		},
+		{
+			"type": "textfile",
+			"filename": "printslide_slide-tut13.pdf",
+			"description": "Folien zum dreizehnten Tutorium vom 02.02.2017: Automaten, endliche Akzeptoren, reguläre Ausdrücke, rechtslineare Grammatiken"
+		},
+		{
+			"type": "textfile",
+			"filename": "slides_tutall.pdf",
+			"description": "Zusammenstellung aller Folien in einem PDF-Paket"
 		}
 	]
 }

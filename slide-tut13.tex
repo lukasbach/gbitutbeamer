@@ -69,14 +69,14 @@
 
 %Mal selber ausprobieren lassen
 \begin{frame}{Umwandlung Mealy- in Moore-Automat}
-	\ifdefined\compiletype
-	Links Mealy-Automat, rechts Moore Automat.
-	\else
-	Wie sieht der zugehörige Moore-Automat aus?
-	\fi
+	Links ein Mealy-, rechts ein Moore-Automat
 	
 	\includegraphics[scale=0.5]{images/MealyBsp.png} \pause
-	\includegraphics[scale=0.5]{images/MooreBsp.png}
+	\includegraphics[scale=0.5]{images/MooreBsp.png} \pause
+	
+	\begin{taskblock}{Aufgabe}
+		Wie sieht der Mealy-Automat als äquivalenter Moore-Automat aus, wie sieht der Moore-Automat als äquivalenter Mealy-Automat aus?
+	\end{taskblock}
 \end{frame}
 
 \subsection{Endliche Akzeptoren}
@@ -133,7 +133,7 @@
 	\includegraphics[scale=0.7]{images/AufgAkzeptor.png}\\
 	\pause
 	\begin{taskblock}{Aufgabe}
-		Konstuiere einen endlichen Akzeptor der die Sprache $L_3 =\{w \in \{a,b\}^*| w \not \in L_1\}$ akzeptiert.
+		Konstuiere einen endlichen Akzeptor der die Sprache $L_3 =\{w \in \{a,b\}^*| w \not \in L_2\}$ akzeptiert.
 	\end{taskblock}
 	\pause
 	\textbf{Lösung} \\Ablehnende Zustände wereden zu akzeptierenden und andersrum.

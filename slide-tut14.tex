@@ -1,0 +1,297 @@
+\def\tutdate{09.02.2017}
+\input{assets/slide-pre}
+
+\section{Turingmaschinen}
+
+\begin{frame}{Turingmaschinen}
+	Was sind Turingmaschinen?
+	
+	\begin{itemize}
+		\pitem Sehr mächtige Erweiterung Automat
+		\begin{itemize}
+			\pitem Was heißt mächtig?
+			\pitem Turingmaschinen können eine große Vielfalt von Problemen lösen, einschließlich vieler in GBI besprochener Probleme
+		\end{itemize}
+		\pitem Gesteuert durch einen endlichen Automaten\ip, aber mit einem \markBlue{unendlichen Arbeitsband} zum Zwischenspeichern von Informationen
+		\pitem Besitzen einen Kopf um auf dem Band zu lesen und zu schreiben
+		\pitem Turingmaschinen sind sozusagen genauso mächtig wie Computer
+		\begin{itemize}
+			\pitem können also benutzt werden, um für Probleme zu entscheiden, \markGreen{ob sie gelöst werden können oder nicht}
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Definition von Turingmaschinen}
+	\begin{block}{Definition von Turingmschinen}
+		Eine Turingmaschine $T = (Z, z_0, X, f, g, m)$ besteht aus:
+		\begin{itemize}
+			\pitem $Z$ Zustandsmenge
+			\pitem $z_0 \in Z$ Startzustand
+			\pitem $X$ Bandalphabet
+			\pitem $\Box$ Blanksymbol (sozusagen Markierung für Leerzeichen)
+			\pitem $f: Z \times X \rightarrow Z$ partielle Zustandsübergangsfunktion
+			\pitem $g: Z \times X \rightarrow X$ partielle Ausgabefunktion
+			\pitem $m: Z \times X \rightarrow \{L, N, R\}$ partielle Bewegungsfunktion
+		\end{itemize}
+	\end{block}
+
+	Anmerkung: partielle Funktionen sind \markGreen{nicht linkstotal}, also manche Elemente des Definitionsbereichs werden nicht abgebildet.
+\end{frame}
+
+\begin{frame}{Beispiel einer Turingmaschine}
+	\includegraphics[scale=0.5]{images/turingexample_withoutannotations.png}
+\end{frame}
+
+\begin{frame}{Beispiel einer Turingmaschine}
+	\includegraphics[scale=0.5]{images/turingexample_withannotations.png}
+\end{frame}
+
+\begin{frame}{Funktionen von Turing Maschinen}
+	\includegraphics[scale=0.4]{images/turingexample_smallspacing.png}
+	
+	Wie sehen die konkreten Abbildungsvorschriften der linken vier Pfeile aus?
+	
+	\begin{columns}
+		\begin{column}{0.3\textwidth}
+			
+			\vspace{.2cm}
+			
+			% vielleicht an die tafel schreiben was die funktionen vom namen her machen (f: zustandsübergang), hat so nicht mehr auf die folie gepasst
+			\begin{itemize}
+				\item $f: Z \times X \rightarrow Z$
+				\item $g: Z \times X \rightarrow X$
+				\item $m: Z \times X \rightarrow \{L, N, R\}$
+			\end{itemize}
+		\end{column}
+		
+		\begin{column}{0.7\textwidth}
+			\begin{tabular}{r || c | c | c}
+				 & f & g & m\\\hline\hline
+				 
+				 %erste Zeile als Beispiel
+				 $0|0,N$ & $(s1, 0) \mapsto s6$ & $(s1, 0) \mapsto 0$ & $(s1, 0) \mapsto N$ \\\hline
+				 
+				 \pause $1|0, R$ 
+				 \pause & $(s1, 1) \mapsto s2$
+				 \pause & $(s1, 1) \mapsto 0$
+				 \pause & $(s1, 1) \mapsto R$ \\\hline
+				 
+				 \pause $1|1, R$ 
+				 \pause & $(s2, 1) \mapsto s2$
+				 \pause & $(s2, 1) \mapsto 1$
+				 \pause & $(s2, 1) \mapsto R$ \\\hline
+				 
+				 \pause $0|0, R$ 
+				 \pause & $(s2, 1) \mapsto s3$
+				 \pause & $(s2, 1) \mapsto 0$
+				 \pause & $(s2, 1) \mapsto R$ \\\hline
+				
+			\end{tabular}
+		\end{column}
+	\end{columns}
+
+\end{frame}
+
+
+\begin{frame}{Das Band einer Turingmaschine}
+	\begin{itemize}
+		\pitem Unendliche Anreihung von Zeichen, die nach links und rechts unbegrenzt weiter geht
+		
+		\p\includegraphics[scale=0.3]{images/turing_band.png}
+		
+		\pitem Die Turingmaschine hat einen Kopf, mit dem sie das aktuelle Zeichen lesen oder überschreiben kann, oder kann ihn nach links oder rechts bewegen.
+		
+		\pitem Das Band einer Turingmaschine wird benutzt als...
+		\begin{itemize}
+			\pitem Erhalten der Eingabe: \ip Bevor die Turingmaschine startet, steht das Eingabewort auf dem Band, der Kopf steht auf dem ersten Zeichen der Eingabe.
+			\pitem Rückgabe der Ausgabe: \ip Nach Beenden steht auf dem Band die Ausgabe (und der Kopf irgendwo).
+			\pitem Zwischenspeicher: \ip Die Turingmaschine kann überall Informationen zwischenspeichern, diese müssen von der TM am Ende aber gelöscht werden.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+	
+% Am besten erst mal die aufgaben zusammen durchrechnen
+\begin{frame}{Beispielabarbeitungen}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{taskblock}{Gemeinsame Übung}
+				Arbeite folgende Wörter mit der Turingmaschine ab:
+				\begin{itemize}
+					\item $0$
+					\item $1$
+					\item $11$
+					\item $111$
+				\end{itemize}
+				Was macht die Turingmaschine?
+			\end{taskblock}
+		\end{column}
+	
+		\begin{column}{0.5\textwidth}
+			\includegraphics[scale=0.4]{images/turingmaschine_1k.png}
+		\end{column}
+	\end{columns}
+
+	\pause
+	
+	Die Turingmaschine macht aus $1^k$ die Ausgabe $1^k \Box 1^k$.
+\end{frame}
+
+\begin{frame}{Halten von Turingmaschinen}
+	
+	\p
+	
+	\begin{block}{Halten einer Turingmaschine}
+		Wenn eine Turingmaschine in einem Zustand ist, für den das nächste Eingabezeichen durch die Übergangsfunktion $f$ nicht definiert ist, \markGreen{hält} die Maschine.
+	\end{block}
+
+	\bp
+
+	Wann hält also eine Turingmaschine \markBlue{nicht}?
+	
+	\begin{block}{Nicht-Halten einer Turingmmaschine}
+		Wenn eine Turingmaschine in eine endlose Schleife gerät, so \markGreen{hält sie nicht}.
+	\end{block}
+\end{frame}
+
+\begin{frame}{Entscheidbarkeit}
+	%todo
+\end{frame}
+
+\begin{frame}{Turingmaschinen Entwurfsaufgabe}
+	
+	\begin{columns}
+		\begin{column}{0.65\textwidth}
+			\begin{taskblock}{Turingmaschine Entwurf}
+				Entwerfe eine Turingmaschine, die...
+				\begin{itemize}
+					\item als Eingabe eine Binärzahl auf dem Band erhält
+					\item als Ausgabe diese Zahl restlos durch zwei teilt und auf dem Band stehen lässt
+				\end{itemize}
+			\end{taskblock}
+		\end{column}
+		
+		\begin{column}{0.45\textwidth}
+			\pause
+			
+			\includegraphics[scale=0.5]{images/turingmaschine_div.png}
+		\end{column}
+	\end{columns}
+
+\end{frame}
+
+\begin{frame}{Turingmaschinen Entwurfsaufgabe}
+	
+	\begin{columns}
+		\begin{column}{0.65\textwidth}
+			\begin{taskblock}{Turingmaschine Entwurf}
+				Entwerfe eine Turingmaschine, die...
+				\begin{itemize}
+					\item als Eingabe eine Binärzahl auf dem Band erhält
+					\item als Ausgabe diese Zahl um eins erhöht auf dem Band stehen lässt
+					\item den Kopf der Turingmaschine auf dem ersten Zeichen der Ausgabe stehen hat.
+				\end{itemize}
+			\end{taskblock}
+		\end{column}
+		
+		\begin{column}{0.45\textwidth}
+			\pause
+			
+			\includegraphics[scale=0.5]{images/turingmaschine_plusone.png}
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+\begin{frame}{Turingmaschine Entwurfsaufgabe}
+	
+	\begin{taskblock}{Turingmaschine Entwurf}
+		Entwerfe eine Turingmaschine, die die Sprache $\{a^kb^k : k \in \N_0 \}$ erkennt.
+	\end{taskblock}
+	\pause
+	
+	\includegraphics[scale=0.5]{images/turingmaschine_aabb.png}
+	
+\end{frame}
+
+\begin{frame}{Konfiguration von Turingmaschinen}
+	Angenommen, man kennt eine Turingmaschine, hat mit der Abarbeitung eines Wortes angefangen, will aber pausieren, um später weiterzumachen...
+	
+	\vspace{.2cm}
+	
+	Was muss man sich alles merken, um später weiter zu machen?
+	
+	\begin{itemize}
+		\pitem Derzeitiger Zustand, in dem die Turingmaschine steht
+		\pitem Inhalt des Bandes
+	\end{itemize}
+
+	\vspace{.2cm}
+	
+	\begin{block}{Konfiguration von Turingmaschinen}
+		Wenn während dem Arbeiten einer Turingmaschine auf dem Band das Wort $w_1 a w_2$ mit $w_1, w_2 \in X^*, a \in X$ steht\ip, der Kopf der Turingmaschine auf das Zeichen $a$ zeigt \ip und die Turingmaschine im Zustand $z$ ist\ip, so schreibt man die \markBlue{Konfiguration der Turingmaschine} als $\Box w_1 (z) a w_2 \Box $.
+	\end{block}
+\end{frame}
+
+\begin{frame}{Konfiguration von Turingmaschinen}
+	Beispiel:
+	
+	\vspace{.2cm}
+	
+	\begin{align*}
+	\Box\Box\Box\Box\Box\Box\Box\Box abcbabb&\markBlue{d}aabc \Box\Box\Box\Box\Box \\
+	&\uparrow \\
+	&KOPF
+	\end{align*}
+	
+	\bp
+	...sei das Band der Turingmaschine während Abarbeitung der Eingabe, dazu steht sie im Zustand $z_4$.
+	
+	\vspace{.2cm}
+	
+	\bp
+	Dann sieht sieht die Konfiguration der Turingmaschine so aus: \ip $\Box abcbabb (z_4) daabc \Box$
+\end{frame}
+
+\begin{frame}{Dokumentation einer Abarbeitung mit Konfigurationen}
+	
+	\begin{taskblock}{Aufgabe zu Konfigurationen}
+		Gebe alle Konfigurationen der Turingmaschine bei Abarbeitung des Wortes $11$ an.
+	\end{taskblock}
+
+	\begin{columns}
+		\begin{column}{0.25\textwidth}
+			\includegraphics[scale=0.3]{images/turingmaschine_1k.png}
+		\end{column}
+		
+		\begin{column}{0.37\textwidth}
+			\begin{description}
+				\pause\item[] $\Box (A)11 \Box$
+				\pause\item[$\rightarrow$] $\Box X(B)1 \Box$
+				\pause\item[$\rightarrow$] $\Box X1(B) \Box$
+				\pause\item[$\rightarrow$] $\Box X1 \Box (C) \Box$
+				\pause\item[$\rightarrow$] $\Box X1 (D) \Box 1\Box$
+				\pause\item[$\rightarrow$] $\Box X (E) 1 \Box 1\Box$
+				\pause\item[$\rightarrow$] $\Box (E) X 1 \Box 1\Box$
+				\pause\item[$\rightarrow$] $\Box 1 (A) 1 \Box 1\Box$
+			\end{description}
+		\end{column}
+	
+		\begin{column}{0.4\textwidth}
+			\begin{description}
+				\pause\item[$\rightarrow$] $\Box 1 X (B) \Box 1\Box$
+				\pause\item[$\rightarrow$] $\Box 1 X \Box (C) 1\Box$
+				\pause\item[$\rightarrow$] $\Box 1 X \Box 1 (C)\Box$
+				\pause\item[$\rightarrow$] $\Box 1 X \Box (D) 1 1\Box$
+				\pause\item[$\rightarrow$] $\Box 1 X (D) \Box 1 1\Box$
+				\pause\item[$\rightarrow$] $\Box 1 (E) X \Box 1 1\Box$
+				\pause\item[$\rightarrow$] $\Box 1 1 (A) \Box 1 1\Box$
+			\end{description}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Halteproblem und Busy Beaver}
+	%todo
+\end{frame}
+
+\input{assets/slide-post}
